@@ -15,7 +15,7 @@ app.use(express.json());
 
 require("./routes/html-routes")(app);
 // Hi
-
+console.log("OMG!")
 app.listen(PORT, function () {
     // Log (server-side) when our server has started
     console.log("Server listening on: http://localhost:" + PORT);
