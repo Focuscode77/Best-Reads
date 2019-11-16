@@ -2,14 +2,16 @@
     "name": "best-reads",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
-        "compile:sass": "node-sass assets/sass/main.scss assets/css/style.css -w"
+        "compile:sass": "node-sass public/assets/sass/main.scss public/assets/css/style.css -w",
+        "start": "node server.js"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Focuscode77/Best-Reads.git"
     },
+    "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
@@ -17,6 +19,9 @@
     },
     "homepage": "https://github.com/Focuscode77/Best-Reads#readme",
     "dependencies": {
+        "express": "^4.17.1",
+        "mysql2": "^2.0.0",
+        "sequelize": "^5.21.2",
         "sass": "^1.23.6"
     },
     "devDependencies": {
