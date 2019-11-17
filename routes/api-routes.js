@@ -1,6 +1,6 @@
 var passport = require("../config/passport");
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.get(
     "/auth/google",
     passport.authenticate("google", {
@@ -8,7 +8,7 @@ module.exports = function(app) {
     })
   );
 
-  app.get("/logout", function(req, res) {
+  app.get("/logout", function (req, res) {
     req.logout();
     req.session.destroy();
     res.redirect("/");
@@ -17,11 +17,11 @@ module.exports = function(app) {
   app.get(
     "/auth/google/callback",
     passport.authenticate("google", {
-      failureRedirect: "/login"
+      failureRedirect: "/auth/google"
     }),
-    function(req, res) {
+    function (req, res) {
       // Successful authentication, redirect home.
-      res.redirect("/");
+      res.json(req.user.displayName)
     }
   );
 };
