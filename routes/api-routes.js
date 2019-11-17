@@ -14,14 +14,24 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
+  app.get("/user", function (req, res) {
+    if (req.session.passport) {
+      res.json(req.session.passport.user.displayName);
+    } else {
+      res.json(false)
+    }
+  });
+
+
   app.get(
     "/auth/google/callback",
     passport.authenticate("google", {
-      failureRedirect: "/auth/google"
+      failureRedirect: "/"
     }),
     function (req, res) {
       // Successful authentication, redirect home.
-      res.json(req.user.displayName)
+      res.redirect("/");
+      // res.json(req.user.displayName)
     }
   );
 };

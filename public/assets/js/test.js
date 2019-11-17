@@ -1,15 +1,25 @@
-function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail());
+$(document).ready(function (req, res) {
+    var displayBody = $(".display")
+    var linksBody = $(".linkz")
+    var loginLink = $("#login")
+    var logoutLink = $("#logout")
+    logoutLink.detach();
+    // loginLink.on("click", () => {
+    $.get("/user").then(function (data) {
+        if (data) {
+            displayBody.text("Welcome: " + data);
+            loginLink.detach();
+            logoutLink.appendTo(linksBody);
+        }
+    });
+    //     loginLink.detach();
+    //     logoutLink.appendTo(linksBody);
 
-    // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
-}
-//hi
+
+    // })
+    // logoutLink.on("click", () => {
+    //     displayBody.text("Logged out!");
+    //     logoutLink.detach();
+    //     loginLink.appendTo(linksBody)
+    // })
+});
