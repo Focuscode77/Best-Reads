@@ -1,19 +1,27 @@
 var passport = require("../config/passport");
 
+module.exports = function(app) {
+  app.get(
+    "/auth/google",
+    passport.authenticate("google", {
+      scope: ["profile"]
+    })
+  );
 
-module.exports = function (app) {
-    app.get('/auth/google',
-        passport.authenticate('google', {
+  app.get("/logout", function(req, res) {
+    req.logout();
+    req.session.destroy();
+    res.redirect("/");
+  });
 
-            scope: ['profile']
-        }));
-    app.get('/auth/google/callback',
-        passport.authenticate('google', {
-            failureRedirect: '/login'
-        }),
-        function (req, res) {
-            // Successful authentication, redirect home.
-            console.log(res)
-            res.redirect('/');
-        });
-}
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google", {
+      failureRedirect: "/login"
+    }),
+    function(req, res) {
+      // Successful authentication, redirect home.
+      res.redirect("/");
+    }
+  );
+};
