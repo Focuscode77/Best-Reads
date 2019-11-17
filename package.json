@@ -21,8 +21,8 @@
     "dependencies": {
         "express": "^4.17.1",
         "mysql2": "^2.0.0",
-        "sequelize": "^5.21.2",
-        "sass": "^1.23.6"
+        "sass": "^1.23.6",
+        "sequelize": "^5.21.2"
     },
     "devDependencies": {
         "node-sass": "^4.13.0"
