@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta
+      name="google-signin-client_id"
+      content="735153275618-0f4o2cvlel20sq2cu1udpn8hsts8c2g9.apps.googleusercontent.com"
+    />
 
     <title>BESTREADS test</title>
 
@@ -17,8 +21,24 @@
     {{!-- Main CSS --}}
     <link rel="stylesheet" href="../../assets/css/style.css">
 
+    {{!-- Font Awesome --}}
+    <script src="https://kit.fontawesome.com/3f7d57fead.js" crossorigin="anonymous"></script>
+
+    {{!-- From Google Sign In Test --}}
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="assets/js/test.js" type="javascript"></script>
+
 </head>
+
+{{!-- Navbar --}}
+{{> header }}
+
 <body>
+
+{{!-- Main Content --}}
     {{{ body }}}
+
+    {{!-- From Google Sign-In Test --}}
+    <script src="assets/js/test.js" type="javascript"></script>
 </body>
 </html>
