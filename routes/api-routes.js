@@ -1,6 +1,7 @@
 var passport = require("../config/passport");
 var xmlConvert = require("xml-js");
 var fetch = require("node-fetch");
+//testing json output
 const fs = require("fs");
 const storeData = (data, path) => {
   try {
@@ -11,22 +12,15 @@ const storeData = (data, path) => {
 };
 
 module.exports = app => {
-  app.get(
-    "/auth/google",
-    passport.authenticate("google", {
-      scope: ["profile"]
-    })
-  );
-
   app.get("/logout", (req, res) => {
     req.logout();
     req.session.destroy();
-    res.redirect("/");
+    res.redirect("/test");
   });
 
   app.get("/user", (req, res) => {
     if (req.session.passport) {
-      res.json(req.session.passport.user.displayName);
+      res.json(req.session.passport.user);
     } else {
       res.json(false);
     }
@@ -69,6 +63,12 @@ module.exports = app => {
         res.json(fullJson);
       });
   });
+  app.get(
+    "/auth/google",
+    passport.authenticate("google", {
+      scope: ["profile"]
+    })
+  );
 
   app.get(
     "/auth/google/callback",
