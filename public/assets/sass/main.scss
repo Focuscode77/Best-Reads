@@ -1,12 +1,16 @@
-@import "abstract/variables";
-@import "abstract/mixins";
-@import "base/base";
-@import "base/typography";
-@import "base/utilities";
-@import "components/buttons";
-@import "layout/footer";
-@import "layout/navbar";
-@import "pages/about";
-@import "pages/goals";
-@import "pages/home";
-@import "pages/lists";
+// @import "abstract/variables";
+// @import "abstract/mixins";
+// @import "base/base";
+// @import "base/typography";
+// @import "base/utilities";
+// @import "components/buttons";
+// @import "layout/footer";
+// @import "layout/navbar";
+// @import "pages/about";
+// @import "pages/goals";
+// @import "pages/home";
+// @import "pages/lists";
+// @import "pages/splash"
+body {
+    background-color: aqua;
+}
