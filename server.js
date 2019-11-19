@@ -5,6 +5,8 @@ var PORT = process.env.PORT || 8080;
 
 var app = express();
 
+var db = require("./models");
+
 app.use(express.static("public"));
 
 //handlebars - initialize handlebars and create routes
@@ -18,9 +20,7 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-
-app.set('view', 'yo')
-
+app.set("view", "yo");
 
 app.use(
   express.urlencoded({
@@ -39,9 +39,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require("./routes/html-routes")(app);
-require("./routes/api-routes")(app);
+// Hi
+console.log("OMG!");
 
-app.listen(PORT, function () {
-  // Log (server-side) when our server has started
-  console.log("Server listening on: http://localhost:" + PORT);
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });

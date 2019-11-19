@@ -1,2 +1,57 @@
-body {
-  background-color: aqua; }
+.navbar {
+  overflow: hidden;
+  z-index: 100;
+  text-align: center;
+  background-color: #fff; }
+  .navbar__logobox {
+    font-family: Garamond, serif;
+    float: left;
+    margin-left: 3rem;
+    font-size: 2.5rem;
+    color: #062b5f;
+    padding: .2rem 1.2rem;
+    background-image: linear-gradient(to bottom left, #B67d3c, #062b5f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; }
+    .navbar__logobox .fas {
+      background-image: linear-gradient(to top, #B67d3c, #062b5f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent; }
+  .navbar__link {
+    float: right; }
+  .navbar__searchbox {
+    text-align: center; }
+    .navbar__searchbox .fas {
+      color: #062b5f; }
+  .navbar a {
+    color: #B67d3c; }
+    .navbar a:link {
+      padding: .2rem 1.2rem;
+      text-decoration: none;
+      font-size: 1.6rem;
+      display: inline-block; }
+    .navbar a:hover {
+      color: #d4a45d; }
+
+.section-splash {
+  height: 100vh;
+  background-color: #fff;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(../images/splash-background.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; }
+
+.splash-heading {
+  font-family: Garamond, serif;
+  color: #000; }
+  .splash-heading__container {
+    height: 100vh;
+    text-align: center; }
+  .splash-heading__box {
+    text-align: center;
+    padding: 10rem; }
+  .splash-heading--main {
+    font-size: 8rem;
+    text-shadow: 0rem 0.3rem 0.5rem rgba(255, 255, 255, 0.8); }

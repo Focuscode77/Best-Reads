@@ -1,8 +1,25 @@
-.section-splash {
-    height: 100vh;
-    background-color: #fff;
-    background-image: url(../images/splash-background.jpg);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
+        .section-splash {
+            height: 100vh;
+            background-color: $color-white;
+            background-image: linear-gradient(to right, rgba($color-white, .5), rgba($color-white, .5)), url(../images/splash-background.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .splash-heading {
+            font-family: $logo-font;
+            color: $color-black;
+            &__container {
+                height: 100vh;
+                text-align: center;
+            }
+            &__box {
+                text-align: center;
+                padding: 10rem;
+            }
+            &--main {
+                font-size: 8rem;
+                text-shadow: 0rem .3rem .5rem rgba($color-white, .8);
+            }
+        }
