@@ -1,7 +1,7 @@
 var passport = require("passport");
 
 var GoogleStrategy = require("passport-google-oauth20").Strategy;
-
+var AmazonStrategy = require("passport-amazon").Strategy;
 passport.use(
     new GoogleStrategy({
             clientID: "735153275618-0f4o2cvlel20sq2cu1udpn8hsts8c2g9.apps.googleusercontent.com",
@@ -13,6 +13,23 @@ passport.use(
         }
     )
 );
+
+passport.use(new AmazonStrategy({
+        clientID: "amzn1.application-oa2-client.752db9a171d94386bc9b4a16035a436b",
+        clientSecret: "f7df7e1ca4441d6f52bfe36c75bffd66b8e4911af1f50f85d2e246a8fbb8b915",
+        callbackURL: "http://localhost:8080/auth/amazon/callback"
+    },
+    function (accessToken, refreshToken, profile, done) {
+        User.findOrCreate({
+            amazonId: profile.id
+        }, function (err, user) {
+            return done(err, user);
+        });
+    }
+));
+
+
+
 passport.serializeUser(function (user, cb) {
     cb(null, user);
 });
