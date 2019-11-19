@@ -20,7 +20,6 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-app.set("view", "yo");
 
 app.use(
   express.urlencoded({
