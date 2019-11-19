@@ -2,14 +2,14 @@ var passport = require("../config/passport");
 var xmlConvert = require("xml-js");
 var fetch = require("node-fetch");
 //testing json output
-const fs = require("fs");
-const storeData = (data, path) => {
-  try {
-    fs.writeFileSync(path, JSON.stringify(data));
-  } catch (err) {
-    console.error(err);
-  }
-};
+// const fs = require("fs");
+// const storeData = (data, path) => {
+//   try {
+//     fs.writeFileSync(path, JSON.stringify(data));
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
 
 module.exports = app => {
   app.get("/logout", (req, res) => {
@@ -20,7 +20,7 @@ module.exports = app => {
 
   app.get("/user", (req, res) => {
     if (req.session.passport) {
-      res.json(req.session.passport.user);
+      res.json(true);
     } else {
       res.json(false);
     }
@@ -39,7 +39,7 @@ module.exports = app => {
           spaces: 4
         });
         // console.log(compactJson);
-        storeData(compactJson, "./compactJSON.txt");
+        // storeData(compactJson, "./compactJSON.txt");
         res.json(compactJson);
       });
   });
@@ -59,7 +59,7 @@ module.exports = app => {
           spaces: 4
         });
         // console.log(fullJson);
-        storeData(fullJson, "./fullJSON.txt");
+        // storeData(fullJson, "./fullJSON.txt");
         res.json(fullJson);
       });
   });

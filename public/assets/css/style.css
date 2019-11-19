@@ -11,6 +11,29 @@ html {
 body {
   box-sizing: border-box; }
 
+.section-heading--main {
+  color: #B67d3c;
+  font-size: 3rem; }
+
+.section-heading--sub {
+  font-family: Garamond, serif;
+  font-size: 2.5rem;
+  font-weight: 700; }
+
+.row-height-250 {
+  height: 25rem;
+  overflow: hidden; }
+
+.btn--add {
+  background-image: linear-gradient(to bottom left, #B67d3c, #d4a45d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: absolute;
+  top: 2%;
+  left: 80%;
+  text-shadow: 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.4); }
+
 .navbar {
   overflow: hidden;
   z-index: 100;

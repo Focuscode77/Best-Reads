@@ -1,0 +1,11 @@
+.section-heading {
+    &--main {
+        color: $color-primary;
+        font-size: 3rem;
+    }
+    &--sub {
+        font-family: $logo-font;
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+}
