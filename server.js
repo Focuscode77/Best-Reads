@@ -21,7 +21,7 @@ app.engine(
 app.set("view engine", "handlebars");
 
 app.set("view", "yo");
-
+// express middleware
 app.use(
   express.urlencoded({
     extended: true
