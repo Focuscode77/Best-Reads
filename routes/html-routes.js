@@ -1,18 +1,18 @@
 var path = require("path");
 
-module.exports = function(app) {
+module.exports = function (app) {
     // app.get("*", function(req, res) {
     //     res.sendFile(path.join(__dirname, "../public/test.html"));
     // });
-    app.get("/test", function(req, res) {
+    app.get("/test", function (req, res) {
         res.sendFile(path.join(__dirname, "../public/test.html"));
     });
 
-    app.get('/', function(req, res, next) {
+    app.get('/', function (req, res, next) {
         res.render('index');
     });
 
-    app.get('/home', function(req, res, next) {
+    app.get('/home', function (req, res, next) {
         res.render('pages/home');
     });
 

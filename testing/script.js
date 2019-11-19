@@ -5,7 +5,16 @@ fetch(queryURL)
     .then(data => {
 
         // data = the raw xml data
-
+        console.log(data);
+        var compactJson = xmlConvert.xml2json(data, {
+            compact: true,
+            spaces: 4
+        });
+        var fullJson = convert.xml2json(xml, {
+            compact: false,
+            spaces: 4
+        });
+        console.log(compactJson, '\n', fullJson);
         //this parses the XML data
         let parser = new DOMParser();
         let xml = parser.parseFromString(data, "application/xml");

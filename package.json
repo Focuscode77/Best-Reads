@@ -1,32 +1,36 @@
 {
-    "name": "best-reads",
-    "version": "1.0.0",
-    "description": "",
-    "main": "server.js",
-    "scripts": {
-        "compile:sass": "node-sass public/assets/sass/main.scss public/assets/css/style.css -w",
-        "start": "node server.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Focuscode77/Best-Reads.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/Focuscode77/Best-Reads/issues"
-    },
-    "homepage": "https://github.com/Focuscode77/Best-Reads#readme",
-    "dependencies": {
-        "express": "^4.17.1",
-        "express-handlebars": "^3.1.0",
-        "handlebars": "^4.5.2",
-        "mysql2": "^2.0.0",
-        "sass": "^1.23.6",
-        "sequelize": "^5.21.2"
-    },
-    "devDependencies": {
-        "node-sass": "^4.13.0"
-    }
+  "name": "best-reads",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "compile:sass": "node-sass public/assets/sass/main.scss public/assets/css/style.css -w",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Focuscode77/Best-Reads.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Focuscode77/Best-Reads/issues"
+  },
+  "homepage": "https://github.com/Focuscode77/Best-Reads#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
+    "mysql2": "^2.0.0",
+    "node-fetch": "^2.6.0",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^2.0.0",
+    "sass": "^1.23.6",
+    "sequelize": "^5.21.2",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "node-sass": "^4.13.0"
+  }
 }
