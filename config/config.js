@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 module.exports = {
   development: {
     username: "root",
@@ -25,3 +26,4 @@ module.exports = {
     operatorsAliases: false
   }
 };
+
