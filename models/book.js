@@ -1,4 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
+
   var BestReads = sequelize.define("BestReads", {
     Title: DataTypes.STRING,
     Author: DataTypes.STRING,
@@ -27,3 +28,4 @@ return User;
 
 
 };
+
