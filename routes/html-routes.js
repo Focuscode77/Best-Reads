@@ -16,4 +16,11 @@ module.exports = function (app) {
         res.render('pages/home');
     });
 
+    // app.get('/profile', function (req, res, next) {
+    //     res.render('pages/profile');
+    // });
+
 };
+
+
+

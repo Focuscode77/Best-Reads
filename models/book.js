@@ -14,17 +14,19 @@ module.exports = function(sequelize, DataTypes) {
 
 
 module.exports = function(sequelize, DataTypes) {
-    var User = sequelize.define("User", {
-        Title: DataTypes.STRING,
-        Author: DataTypes.STRING,
-        Author: DataTypes.STRING,
-        Rating: DataTypes.INTEGER,
-        Cover: DataTypes.STRING,
+var User = sequelize.define("User", {
+    Title: DataTypes.STRING,
+    Author: DataTypes.STRING,
+    Author: DataTypes.STRING,
+    Rating: DataTypes.INTEGER,
+    Cover: DataTypes.STRING,
 
-    });
+});
 
+});
 
-    return User;
+return User;
 
+return User;
 
 };
