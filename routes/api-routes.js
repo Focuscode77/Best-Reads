@@ -63,6 +63,18 @@ module.exports = app => {
         res.json(fullJson);
       });
   });
+
+  app.get('/auth/amazon',
+    passport.authenticate('amazon'));
+
+  app.get('/auth/amazon/callback',
+    passport.authenticate('amazon', {
+      failureRedirect: '/login'
+    }),
+    function (req, res) {
+      // Successful authentication, redirect home.
+      res.redirect('/');
+    });
   app.get(
     "/auth/google",
     passport.authenticate("google", {
