@@ -9,3 +9,11 @@
         font-weight: 700;
     }
 }
+
+.info-heading {
+    font-family: $logo-font;
+    font-size: 3rem;
+    & b {
+        font-weight: bold;
+    }
+}

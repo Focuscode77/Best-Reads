@@ -1,0 +1,10 @@
+.current-book-list {
+    &--item {
+        & a {
+            color: $color-primary;
+            // font-family: $logo-font;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+    }
+}

@@ -1,10 +1,10 @@
 .btn {
     &--add {
-        @include gradientText(bottom left, $color-primary, $color-primary-light);
+        @include gradientText(bottom left, $color-secondary, $color-secondary-light);
         position: absolute;
         top: 2%;
         left: 80%;
-        text-shadow: .2rem .2rem .3rem rgba($color-black, .4);
+        text-shadow: .2rem .2rem .3rem rgba($color-secondary, .4);
         ;
     }
 }
