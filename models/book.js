@@ -23,9 +23,6 @@ var User = sequelize.define("User", {
 
 });
 
-});
-
-return User;
 
 return User;
 
