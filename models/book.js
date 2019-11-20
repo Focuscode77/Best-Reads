@@ -22,8 +22,5 @@ module.exports = function(sequelize, DataTypes) {
         Cover: DataTypes.STRING,
 
     });
-
-
     return User;
-
 };
