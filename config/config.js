@@ -1,7 +1,3 @@
-
-
-
-
 require('dotenv').config();
 
 
@@ -35,5 +31,5 @@ module.exports = {
     operatorsAliases: false
   }
 
-}
+
 };
