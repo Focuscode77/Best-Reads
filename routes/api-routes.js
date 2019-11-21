@@ -14,13 +14,16 @@ var fetch = require("node-fetch");
 module.exports = app => {
   app.get("/logout", (req, res) => {
     req.logout();
-    req.session.destroy();
-    res.redirect("/test");
+    req.session = null;
+    res.redirect("/");
   });
 
   app.get("/user", (req, res) => {
     if (req.session.passport) {
-      res.json(true);
+      res.json({
+        provider: req.session.passport.user.provider,
+        name: req.session.passport.user._json.name
+      });
     } else {
       res.json(false);
     }
@@ -64,17 +67,23 @@ module.exports = app => {
       });
   });
 
-  app.get('/auth/amazon',
-    passport.authenticate('amazon'));
+  app.get(
+    "/auth/amazon",
+    passport.authenticate("amazon", {
+      scope: ["profile"]
+    })
+  );
 
-  app.get('/auth/amazon/callback',
-    passport.authenticate('amazon', {
-      failureRedirect: '/login'
+  app.get(
+    "/auth/amazon/callback",
+    passport.authenticate("amazon", {
+      failureRedirect: "/"
     }),
     function (req, res) {
       // Successful authentication, redirect home.
-      res.redirect('/');
-    });
+      res.redirect("/");
+    }
+  );
   app.get(
     "/auth/google",
     passport.authenticate("google", {
@@ -89,7 +98,7 @@ module.exports = app => {
     }),
     (req, res) => {
       // Successful authentication, redirect home.
-      res.redirect("/test");
+      res.redirect("/");
       // res.json(req.user.displayName)
     }
   );
