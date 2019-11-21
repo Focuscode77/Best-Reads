@@ -57,4 +57,3 @@ db.sequelize
       console.log("App listening on PORT " + PORT);
     });
   });
-}
