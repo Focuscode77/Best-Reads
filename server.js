@@ -48,16 +48,13 @@ require("./routes/post-api-routes")(app);
 
 // Hi
 console.log("OMG!");
-if (process.env.JAWSDB_URL) {
-  connection = mysql.createConnection(process.env.JAWSDB_URL);
-} else {
-  db.sequelize
-    .sync({
-      force: true
-    })
-    .then(function () {
-      app.listen(PORT, function () {
-        console.log("App listening on PORT " + PORT);
-      });
+db.sequelize
+  .sync({
+    force: true
+  })
+  .then(function () {
+    app.listen(PORT, function () {
+      console.log("App listening on PORT " + PORT);
     });
+  });
 }
