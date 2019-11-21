@@ -21,6 +21,7 @@ module.exports = function (sequelize, DataTypes) {
         Rating: DataTypes.INTEGER,
         Cover: DataTypes.STRING,
 
+
     });
 
 
