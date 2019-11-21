@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
 
-    var User = sequelize.define("BestReads", {
+    var Book = sequelize.define("BestReads", {
         Title: DataTypes.STRING,
         Author: DataTypes.STRING,
         Rating: DataTypes.INTEGER,
@@ -9,7 +9,11 @@ module.exports = function (sequelize, DataTypes) {
 
     });
 
-    return User;
+    return Book;
     
 };
+
+
+
+
 
