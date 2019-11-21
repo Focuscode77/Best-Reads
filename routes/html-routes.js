@@ -12,6 +12,7 @@ module.exports = function (app) {
         res.render('index');
     });
 
+
     app.get('/home', function (req, res, next) {
         res.render('pages/home');
     });
