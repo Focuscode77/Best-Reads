@@ -1,7 +1,7 @@
 var passport = require("passport");
 
 var GoogleStrategy = require("passport-google-oauth20").Strategy;
-var AmazonStrategy = require("passport-amazon").Strategy;
+// var AmazonStrategy = require("passport-amazon").Strategy;
 passport.use(
   new GoogleStrategy(
     {

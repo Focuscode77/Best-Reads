@@ -20,19 +20,46 @@ body {
   font-size: 2.5rem;
   font-weight: 700; }
 
+.info-heading {
+  font-family: Garamond, serif;
+  font-size: 3rem; }
+  .info-heading b {
+    font-weight: bold; }
+
 .row-height-250 {
   height: 25rem;
   overflow: hidden; }
 
+.img-wrapper {
+  position: relative; }
+
+.img-responsive {
+  width: 100%;
+  height: auto; }
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center; }
+
+.img-overlay:before {
+  content: ' ';
+  display: block;
+  /* adjust 'height' to position overlay content vertically */
+  height: 50%; }
+
 .btn--add {
-  background-image: linear-gradient(to bottom left, #B67d3c, #d4a45d);
+  background-image: linear-gradient(to bottom left, #0861dd, #548cda);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   position: absolute;
   top: 2%;
   left: 80%;
-  text-shadow: 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.4); }
+  text-shadow: 0.2rem 0.2rem 0.3rem rgba(8, 97, 221, 0.4); }
 
 .navbar {
   overflow: hidden;
@@ -58,7 +85,8 @@ body {
   .navbar__link {
     float: right; }
   .navbar__searchbox {
-    text-align: center; }
+    text-align: center;
+    width: 25%; }
     .navbar__searchbox .fas {
       color: #062b5f; }
   .navbar a {
@@ -70,6 +98,11 @@ body {
       display: inline-block; }
     .navbar a:hover {
       color: #d4a45d; }
+
+.current-book-list--item a {
+  color: #B67d3c;
+  font-size: 2.5rem;
+  font-weight: bold; }
 
 .section-splash {
   height: 100vh;
