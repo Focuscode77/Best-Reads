@@ -1,3 +1,5 @@
+
+
 require('dotenv').config();
 
 
@@ -27,4 +29,6 @@ module.exports = {
     dialect: "mysql",
     operatorsAliases: false
   }
+
+}
 };

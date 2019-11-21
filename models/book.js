@@ -13,7 +13,9 @@ module.exports = function (sequelize, DataTypes) {
 };
 
 
+
 module.exports = function (sequelize, DataTypes) {
+
     var User = sequelize.define("User", {
         Title: DataTypes.STRING,
         Author: DataTypes.STRING,
@@ -23,8 +25,5 @@ module.exports = function (sequelize, DataTypes) {
 
 
     });
-
-
     return User;
-
 };
