@@ -20,10 +20,27 @@ module.exports = app => {
 
   app.get("/user", (req, res) => {
     if (req.session.passport) {
-      res.json({
-        provider: req.session.passport.user.provider,
-        name: req.session.passport.user._json.name
-      });
+      switch (req.session.passport.user.provider) {
+        case "google": {
+          res.json({
+            provider: req.session.passport.user.provider,
+            provider_id: req.session.passport.user._json.sub,
+            name: req.session.passport.user._json.name,
+            picture: req.session.passport.user._json.picture
+          });
+        }
+        break;
+      case "amazon": {
+        res.json({
+          provider: req.session.passport.user.provider,
+          provider_id: req.session.passport.user._json.user_id,
+          name: req.session.passport.user._json.name,
+          email: req.session.passport.user._json.email
+        });
+      }
+      break;
+      }
+
     } else {
       res.json(false);
     }
