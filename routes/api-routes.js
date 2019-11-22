@@ -1,5 +1,6 @@
 var passport = require("../config/passport");
 var xmlConvert = require("xml-js");
+var db = require("../models");
 var fetch = require("node-fetch");
 var Puid = require("puid");
 var puid = new Puid('');
@@ -30,9 +31,47 @@ module.exports = app => {
     res.redirect("/");
   });
   app.get("/login", (req, res) => {
+    if (req.session.passport) {
+      switch (req.session.passport.user.provider) {
+        case "google": {
+          db.google_uid.findAll({
+            where: {
+              google_uid: req.session.passport.user._json.sub
+            }
+          }).then(function (dbResult) {
+            console.log(dbResult[0])
+            if (dbResult[0]) {
+              res.json(dbResult[0].id)
+            } else {
+              res.redirect("/create")
+            }
+          })
+
+        }
+      }
+    }
 
 
   });
+  app.get("/create", (req, res) => {
+    db.google_uid.create({
+      google_uid: req.session.passport.user._json.sub
+    });
+    db.amazon_uid.create({
+      amazon_uid: ""
+    });
+    db.users.create({
+      name: req.session.passport.user._json.name,
+      username: puid.generate(),
+      email: "",
+      dob: 0,
+      pictureURL: req.session.passport.user._json.picture,
+      newUser: true
+    }).then(function (dbResult) {
+      profile = new userProfile(dbResult.name, dbResult.username, dbResult.email, dbResult.dob, dbResult.pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
+      res.json(profile);
+    })
+  })
   app.get("/user", (req, res) => {
     res.json(profile);
   })
@@ -109,7 +148,6 @@ module.exports = app => {
       failureRedirect: "/"
     }),
     (req, res) => {
-      profile = new userProfile(req.session.passport.user._json.name, puid.generate(), null, null, req.session.passport.user._json.picture, req.session.passport.user.provider, req.session.passport.user._json.sub);
       res.redirect("/");
       // res.json(req.user.displayName)
     }
