@@ -50,8 +50,8 @@ module.exports = function (app) {
         }
 
     });
-    app.get('/home', function (req, res, next) {
-        res.render('pages/home');
+    app.get('/test', function (req, res, next) {
+        res.render('pages/test');
     });
     app.get('/home', function (req, res, next) {
         res.render('pages/home');

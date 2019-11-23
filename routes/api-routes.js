@@ -23,14 +23,14 @@ function userProfile(name, username, email, dob, pictureURL, provider, provider_
   this.provider = provider;
   this.provider_id = provider_id;
 }
-module.exports = app => {
-  app.get("/logout", (req, res) => {
+module.exports = function (app) {
+  app.get("/logout", function (req, res) {
     req.logout();
     req.session = null;
     profile = false;
     res.redirect("/");
   });
-  app.get("/login", (req, res) => {
+  app.get("/login", function (req, res) {
     if (req.session.passport) {
       switch (req.session.passport.user.provider) {
         case "google": {
@@ -69,7 +69,7 @@ module.exports = app => {
       newUser: true
     }).then(function (dbResult) {
       profile = new userProfile(dbResult.name, dbResult.username, dbResult.email, dbResult.dob, dbResult.pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
-      res.json(profile);
+      res.json(req.session.passport.user._json + profile);
     })
   })
   app.get("/user", (req, res) => {
@@ -147,7 +147,7 @@ module.exports = app => {
     passport.authenticate("google", {
       failureRedirect: "/"
     }),
-    (req, res) => {
+    function (req, res) {
       res.redirect("/");
       // res.json(req.user.displayName)
     }
