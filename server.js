@@ -48,7 +48,6 @@ require("./routes/post-api-routes")(app);
 
 // Hi
 console.log("OMG!");
-
 db.sequelize
   .sync({
     force: true
