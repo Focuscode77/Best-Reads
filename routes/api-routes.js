@@ -6,7 +6,8 @@ var Puid = require("puid");
 var puid = new Puid('');
 var profile = false;
 
-function userProfile(name, username, email, dob, pictureURL, provider, provider_id) {
+function userProfile(uid, name, username, email, dob, pictureURL, provider, provider_id) {
+  this.uid = uid;
   this.name = name;
   this.username = username;
   this.email = email;
@@ -39,7 +40,7 @@ module.exports = function (app) {
                 }
               }).then(dbResult => {
 
-                profile = new userProfile(dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
+                profile = new userProfile(dbResult[0].id, dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
                 console.log(req.session.passport.user._json && profile);
                 res.redirect("/")
               })
@@ -63,7 +64,7 @@ module.exports = function (app) {
                 id: dbResult[0].id
               }
             }).then(dbResult => {
-              profile = new userProfile(dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.user_id)
+              profile = new userProfile(dbResult[0].id, dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.user_id)
               console.log(req.session.passport.user._json && profile);
               res.redirect("/")
             })
@@ -95,7 +96,7 @@ module.exports = function (app) {
           dob: 000000,
           pictureURL: req.session.passport.user._json.picture
         }).then(dbResult => {
-          profile = new userProfile(dbResult.name, dbResult.username, dbResult.email, dbResult.dob, dbResult.pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
+          profile = new userProfile(dbResult.id, dbResult.name, dbResult.username, dbResult.email, dbResult.dob, dbResult.pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
           console.log(req.session.passport.user._json && profile);
           res.redirect("/")
         })
@@ -118,7 +119,7 @@ module.exports = function (app) {
           dob: 000000,
           pictureURL: ""
         }).then(dbResult => {
-          profile = new userProfile(dbResult.name, dbResult.username, dbResult.email, dbResult.dob, dbResult.pictureURL, req.session.passport.user.provider, req.session.passport.user._json.user_id)
+          profile = new userProfile(dbResult.id, dbResult.name, dbResult.username, dbResult.email, dbResult.dob, dbResult.pictureURL, req.session.passport.user.provider, req.session.passport.user._json.user_id)
           console.log(req.session.passport.user._json && profile);
           res.redirect("/")
         })
