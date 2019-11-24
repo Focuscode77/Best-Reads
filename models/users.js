@@ -5,8 +5,7 @@ module.exports = function (sequelize, DataTypes) {
         username: DataTypes.STRING,
         email: DataTypes.STRING,
         dob: DataTypes.INTEGER,
-        pictureURL: DataTypes.STRING,
-        newUser: DataTypes.BOOLEAN
+        pictureURL: DataTypes.STRING
     });
 
     return users;

@@ -5,15 +5,7 @@ var fetch = require("node-fetch");
 var Puid = require("puid");
 var puid = new Puid('');
 var profile = false;
-//testing json output
-// const fs = require("fs");
-// const storeData = (data, path) => {
-//   try {
-//     fs.writeFileSync(path, JSON.stringify(data));
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
+
 function userProfile(name, username, email, dob, pictureURL, provider, provider_id) {
   this.name = name;
   this.username = username;
@@ -38,43 +30,105 @@ module.exports = function (app) {
             where: {
               google_uid: req.session.passport.user._json.sub
             }
-          }).then(function (dbResult) {
+          }).then(dbResult => {
             console.log(dbResult[0])
             if (dbResult[0]) {
-              res.json(dbResult[0].id)
+              db.users.findAll({
+                where: {
+                  id: dbResult[0].id
+                }
+              }).then(dbResult => {
+
+                profile = new userProfile(dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
+                console.log(req.session.passport.user._json && profile);
+                res.redirect("/")
+              })
             } else {
-              res.redirect("/create")
+              res.redirect("/create/google")
             }
           })
 
         }
+        break;
+      case "amazon": {
+        db.amazon_uid.findAll({
+          where: {
+            amazon_uid: req.session.passport.user._json.user_id
+          }
+        }).then(dbResult => {
+          console.log(dbResult[0])
+          if (dbResult[0]) {
+            db.users.findAll({
+              where: {
+                id: dbResult[0].id
+              }
+            }).then(dbResult => {
+              profile = new userProfile(dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.user_id)
+              console.log(req.session.passport.user._json && profile);
+              res.redirect("/")
+            })
+          } else {
+            res.redirect("/create/amazon")
+          }
+        })
+      }
+      break;
+      default:
+        res.redirect("/logout")
+
       }
     }
 
 
   });
-  app.get("/create", (req, res) => {
+  app.get("/create/google", (req, res) => {
     db.google_uid.create({
       google_uid: req.session.passport.user._json.sub
-    });
-    db.amazon_uid.create({
-      amazon_uid: ""
-    });
-    db.users.create({
-      name: req.session.passport.user._json.name,
-      username: puid.generate(),
-      email: "",
-      dob: 0,
-      pictureURL: req.session.passport.user._json.picture,
-      newUser: true
-    }).then(function (dbResult) {
-      profile = new userProfile(dbResult.name, dbResult.username, dbResult.email, dbResult.dob, dbResult.pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
-      res.json(req.session.passport.user._json + profile);
+    }).then(() => {
+      db.amazon_uid.create({
+        amazon_uid: ""
+      }).then(() => {
+        db.users.create({
+          name: req.session.passport.user._json.name,
+          username: puid.generate(),
+          email: "",
+          dob: 000000,
+          pictureURL: req.session.passport.user._json.picture
+        }).then(dbResult => {
+          profile = new userProfile(dbResult.name, dbResult.username, dbResult.email, dbResult.dob, dbResult.pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
+          console.log(req.session.passport.user._json && profile);
+          res.redirect("/")
+        })
+
+      })
     })
-  })
+
+  });
+  app.get("/create/amazon", (req, res) => {
+    db.amazon_uid.create({
+      amazon_uid: req.session.passport.user._json.user_id
+    }).then(() => {
+      db.google_uid.create({
+        google_uid: ""
+      }).then(() => {
+        db.users.create({
+          name: req.session.passport.user._json.name,
+          username: puid.generate(),
+          email: req.session.passport.user._json.email,
+          dob: 000000,
+          pictureURL: ""
+        }).then(dbResult => {
+          profile = new userProfile(dbResult.name, dbResult.username, dbResult.email, dbResult.dob, dbResult.pictureURL, req.session.passport.user.provider, req.session.passport.user._json.user_id)
+          console.log(req.session.passport.user._json && profile);
+          res.redirect("/")
+        })
+      })
+    })
+  });
+
   app.get("/user", (req, res) => {
     res.json(profile);
-  })
+  });
 
 
   app.get("/xmltest2", (req, res) => {
@@ -84,14 +138,10 @@ module.exports = function (app) {
     fetch(queryURL)
       .then(response => response.text())
       .then(data => {
-        // data = the raw xml data
-        // console.log(data);
         var compactJson = xmlConvert.xml2js(data, {
           compact: true,
           spaces: 4
         });
-        // console.log(compactJson);
-        // storeData(compactJson, "./compactJSON.txt");
         res.json(compactJson);
       });
   });
@@ -103,15 +153,11 @@ module.exports = function (app) {
     fetch(queryURL)
       .then(response => response.text())
       .then(data => {
-        // data = the raw xml data
-        // console.log(data);
 
         var fullJson = xmlConvert.xml2js(data, {
           compact: false,
           spaces: 4
         });
-        // console.log(fullJson);
-        // storeData(fullJson, "./fullJSON.txt");
         res.json(fullJson);
       });
   });
@@ -130,9 +176,7 @@ module.exports = function (app) {
     }),
     function (req, res) {
       // Successful authentication, redirect home.
-      profile = new userProfile(req.session.passport.user._json.name, puid.generate(), req.session.passport.user._json.email, null, null, req.session.passport.user.provider, req.session.passport.user._json.user_id);
-
-      res.redirect("/");
+      res.redirect("/login");
     }
   );
   app.get(
@@ -148,7 +192,7 @@ module.exports = function (app) {
       failureRedirect: "/"
     }),
     function (req, res) {
-      res.redirect("/");
+      res.redirect("/login");
       // res.json(req.user.displayName)
     }
   );
