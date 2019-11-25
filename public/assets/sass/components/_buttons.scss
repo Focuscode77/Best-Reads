@@ -1,10 +1,18 @@
 .btn {
     &--add {
-        @include gradientText(bottom left, $color-secondary, $color-secondary-light);
-        position: absolute;
-        top: 2%;
-        left: 80%;
-        text-shadow: .2rem .2rem .3rem rgba($color-secondary, .4);
-        ;
+        @include absolutePosition (80%, 2%);
+        &-not-listed {
+            @include gradientText(bottom left, $color-secondary, $color-secondary-light);
+            text-shadow: .2rem .2rem .3rem rgba($color-secondary, .4);
+        }
+        &-listed {
+            @include gradientText(bottom left, $color-primary, $color-primary-light);
+            text-shadow: .2rem .2rem .3rem rgba($color-primary, .4);
+        }
+        &:hover,
+        &:focus,
+        &:active {
+            cursor: pointer;
+        }
     }
 }

@@ -1,25 +1,27 @@
 <div class="container-fluid">
     <div class="container mt-5">
 
-<h2 class="section-heading--main" id="current-book-title">
-Six of Crows
-</h2>
-    <hr>
+    <div id="current-book"></div>
 
+    <script id="current-book-template" type="text/x-handlebars-template">
+    <h2 class="section-heading--main" id="current-book-title">
+        \{{title}}
+    </h2>
+    <hr>
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4">
-                <img class="img-fluid" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg">
+                <img class="img-fluid" src="\{{image}}">
         </div>
 
         <div class="col-sm-12 col-md-5">
             <div class="current-book-info mb-5">
-            <h3 class="info-heading"><b>Author:</b> Leigh Bardugo</h3>
-            <h3 class="info-heading"><b>Rating:</b> 5.0</h3>
-            <h3 class="info-heading"><b>ISBN:</b> #######</h3>
+            <h3 class="info-heading"><b>Author:</b> \{{author}}</h3>
+            <h3 class="info-heading"><b>Rating:</b> \{{rating}}</h3>
+            <h3 class="info-heading"><b>ID #:</b> \{{id}}</h3>
             </div>
 
             <div class="current-book-lists">
-                <h3 class="info-heading"><b>Your Lists</b>  <i class="fas fa-plus-circle btn--add  fa-4x"></i></h3>
+                <h3 class="info-heading"><b>Your Lists</b> <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-pulse hvr-back-pulse fa-4x"></i></h3>
                 <ul id="current-book-list">
                     <li class="list-group-item current-book-list--item"><a href="#">Favorites</a></li>
                     <li class="list-group-item current-book-list--item"><a href="#">Read</a></li>
@@ -29,9 +31,10 @@ Six of Crows
             </div>
 
         </div>
-
     </div>
-
+    </script>
 
 </div>
 </div>
+
+<script src="assets/js/current-book.js" type="text/javascript" ></script>

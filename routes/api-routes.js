@@ -12,94 +12,126 @@ var fetch = require("node-fetch");
 // };
 
 module.exports = app => {
-  app.get("/logout", (req, res) => {
-    req.logout();
-    req.session = null;
-    res.redirect("/");
-  });
+    app.get("/logout", (req, res) => {
+        req.logout();
+        req.session = null;
+        res.redirect("/");
+    });
 
-  app.get("/user", (req, res) => {
-    if (req.session.passport) {
-      res.json({
-        provider: req.session.passport.user.provider,
-        name: req.session.passport.user._json.name
-      });
-    } else {
-      res.json(false);
-    }
-  });
-  app.get("/xmltest2", (req, res) => {
-    var queryURL =
-      "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=Madeline";
+    app.get("/user", (req, res) => {
+        if (req.session.passport) {
+            res.json({
+                provider: req.session.passport.user.provider,
+                name: req.session.passport.user._json.name
+            });
+        } else {
+            res.json(false);
+        }
+    });
 
-    fetch(queryURL)
-      .then(response => response.text())
-      .then(data => {
-        // data = the raw xml data
-        // console.log(data);
-        var compactJson = xmlConvert.xml2js(data, {
-          compact: true,
-          spaces: 4
-        });
-        // console.log(compactJson);
-        // storeData(compactJson, "./compactJSON.txt");
-        res.json(compactJson);
-      });
-  });
+    //ALL RESULTS
+    app.get("/xmltest2/:results", (req, res) => {
 
-  app.get("/xmltest", (req, res) => {
-    var queryURL =
-      "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=Madeline";
+        var queryURL =
+            "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=" + req.params.results;
 
-    fetch(queryURL)
-      .then(response => response.text())
-      .then(data => {
-        // data = the raw xml data
-        // console.log(data);
+        fetch(queryURL)
+            .then(response => response.text())
+            .then(data => {
+                // data = the raw xml data
+                // console.log(data);
+                var compactJson = xmlConvert.xml2js(data, {
+                    compact: true,
+                    spaces: 4
+                });
+                // console.log(compactJson);
+                // storeData(compactJson, "./compactJSON.txt");
+                res.json(compactJson);
+            });
+    });
 
-        var fullJson = xmlConvert.xml2js(data, {
-          compact: false,
-          spaces: 4
-        });
-        // console.log(fullJson);
-        // storeData(fullJson, "./fullJSON.txt");
-        res.json(fullJson);
-      });
-  });
+    app.get("/xmltest", (req, res) => {
+        var queryURL =
+            "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=Madeline";
 
-  app.get(
-    "/auth/amazon",
-    passport.authenticate("amazon", {
-      scope: ["profile"]
-    })
-  );
+        fetch(queryURL)
+            .then(response => response.text())
+            .then(data => {
+                // data = the raw xml data
+                // console.log(data);
 
-  app.get(
-    "/auth/amazon/callback",
-    passport.authenticate("amazon", {
-      failureRedirect: "/"
-    }),
-    function (req, res) {
-      // Successful authentication, redirect home.
-      res.redirect("/");
-    }
-  );
-  app.get(
-    "/auth/google",
-    passport.authenticate("google", {
-      scope: ["profile"]
-    })
-  );
+                var fullJson = xmlConvert.xml2js(data, {
+                    compact: false,
+                    spaces: 4
+                });
+                // console.log(fullJson);
+                // storeData(fullJson, "./fullJSON.txt");
+                res.json(fullJson);
+            });
+    });
 
-  app.get(
-    "/auth/google/callback",
-    passport.authenticate("google", {
-      failureRedirect: "/"
-    }),
-    (req, res) => {
-      // Successful authentication, redirect home.
-      res.redirect("/");
-      // res.json(req.user.displayName)
-    }
-  );
+    app.get("/google-books/all/:query", (req, res) => {
+        var queryURL =
+            "https://www.googleapis.com/books/v1/volumes?q=" + req.params.query + "&key=AIzaSyD8EEi7FPMPI6kEQFzxN31RdNWqHc7rHGQ";
+
+        fetch(queryURL)
+            .then(data => {
+                console.log(data);
+                res.json(data[0]);
+            });
+    });
+
+    app.get("/google-books/title/:query", (req, res) => {
+        var queryURL =
+            "https://www.googleapis.com/books/v1/volumes?q=intitle:" + req.params.query + "&key=AIzaSyD8EEi7FPMPI6kEQFzxN31RdNWqHc7rHGQ";
+
+    });
+
+    app.get("/google-books/author/:query", (req, res) => {
+        var queryURL =
+            "https://www.googleapis.com/books/v1/volumes?q=inauthor:" + req.params.query + "&key=AIzaSyD8EEi7FPMPI6kEQFzxN31RdNWqHc7rHGQ";
+
+    });
+
+    app.get("/google-books/isbn/:query", (req, res) => {
+        var queryURL =
+            "https://www.googleapis.com/books/v1/volumes?q=isbn:" + req.params.query + "&key=AIzaSyD8EEi7FPMPI6kEQFzxN31RdNWqHc7rHGQ";
+
+    });
+
+    app.get(
+        "/auth/amazon",
+        passport.authenticate("amazon", {
+            scope: ["profile"]
+        })
+    );
+
+    app.get(
+        "/auth/amazon/callback",
+        passport.authenticate("amazon", {
+            failureRedirect: "/"
+        }),
+        function(req, res) {
+            // Successful authentication, redirect home.
+            res.redirect("/");
+        }
+    );
+    app.get(
+        "/auth/google",
+        passport.authenticate("google", {
+            scope: ["profile"]
+        })
+    );
+
+    app.get(
+        "/auth/google/callback",
+        passport.authenticate("google", {
+            failureRedirect: "/"
+        }),
+        (req, res) => {
+            // Successful authentication, redirect home.
+            res.redirect("/");
+            // res.json(req.user.displayName)
+        }
+    );
 };
