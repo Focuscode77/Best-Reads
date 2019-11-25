@@ -1,8 +1,13 @@
 require('dotenv').config();
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
 
 
 module.exports = {
+<<<<<<< HEAD
     development: {
         username: "root",
         password: "yourRootPassword",
@@ -28,3 +33,27 @@ module.exports = {
         operatorsAliases: false
     }
 };
+=======
+  "development": {
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
+    "dialect": "mysql"
+  },
+  "production": {
+    "use_env_variable": "JAWSDB_URL",
+    "dialect": "mysql"
+  }
+
+
+};
+
+>>>>>>> master
