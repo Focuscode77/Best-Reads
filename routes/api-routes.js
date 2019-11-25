@@ -126,10 +126,20 @@ module.exports = function (app) {
       })
     })
   });
-
-  app.get("/user", (req, res) => {
-    res.json(profile);
+  app.get("/user/profile", (req, res) => {
+    if (profile) {
+      res.render("pages/profile")
+    } else {
+      res.redirect("/")
+    }
   });
+  app.get("/user", (req, res) => {
+    if (req.session.passport) {
+      res.json(profile);
+    } else {
+      res.json(false)
+    }
+  })
 
 
   app.get("/xmltest2", (req, res) => {

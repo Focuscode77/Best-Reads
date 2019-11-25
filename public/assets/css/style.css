@@ -3,39 +3,59 @@
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: inherit; }
+  box-sizing: inherit;
+}
 
 html {
-  font-size: 62.5%; }
+  font-size: 62.5%;
+}
 
 body {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
+
+
+.well {
+  margin: 20px;
+}
+
+.well>* {
+  margin: 25px;
+}
 
 .section-heading--main {
   color: #B67d3c;
-  font-size: 3rem; }
+  font-size: 3rem;
+}
 
 .section-heading--sub {
   font-family: Garamond, serif;
   font-size: 2.5rem;
-  font-weight: 700; }
+  font-weight: 700;
+}
 
 .info-heading {
   font-family: Garamond, serif;
-  font-size: 3rem; }
-  .info-heading b {
-    font-weight: bold; }
+  font-size: 3rem;
+}
+
+.info-heading b {
+  font-weight: bold;
+}
 
 .row-height-250 {
   height: 25rem;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .img-wrapper {
-  position: relative; }
+  position: relative;
+}
 
 .img-responsive {
   width: 100%;
-  height: auto; }
+  height: auto;
+}
 
 .img-overlay {
   position: absolute;
@@ -43,13 +63,15 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  text-align: center; }
+  text-align: center;
+}
 
 .img-overlay:before {
   content: ' ';
   display: block;
   /* adjust 'height' to position overlay content vertically */
-  height: 50%; }
+  height: 50%;
+}
 
 .btn--add {
   background-image: linear-gradient(to bottom left, #0861dd, #548cda);
@@ -59,50 +81,69 @@ body {
   position: absolute;
   top: 2%;
   left: 80%;
-  text-shadow: 0.2rem 0.2rem 0.3rem rgba(8, 97, 221, 0.4); }
+  text-shadow: 0.2rem 0.2rem 0.3rem rgba(8, 97, 221, 0.4);
+}
 
 .navbar {
   overflow: hidden;
   z-index: 100;
   text-align: center;
-  background-color: #fff; }
-  .navbar__logobox {
-    font-family: Garamond, serif;
-    float: left;
-    margin-left: 3rem;
-    font-size: 2.5rem;
-    color: #062b5f;
-    padding: .2rem 1.2rem;
-    background-image: linear-gradient(to bottom left, #B67d3c, #062b5f);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; }
-    .navbar__logobox .fas {
-      background-image: linear-gradient(to top, #B67d3c, #062b5f);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent; }
-  .navbar__link {
-    float: right; }
-  .navbar__searchbox {
-    text-align: center;
-    width: 25%; }
-    .navbar__searchbox .fas {
-      color: #062b5f; }
-  .navbar a {
-    color: #B67d3c; }
-    .navbar a:link {
-      padding: .2rem 1.2rem;
-      text-decoration: none;
-      font-size: 1.6rem;
-      display: inline-block; }
-    .navbar a:hover {
-      color: #d4a45d; }
+  background-color: #fff;
+}
+
+.navbar__logobox {
+  font-family: Garamond, serif;
+  float: left;
+  margin-left: 3rem;
+  font-size: 2.5rem;
+  color: #062b5f;
+  padding: .2rem 1.2rem;
+  background-image: linear-gradient(to bottom left, #B67d3c, #062b5f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.navbar__logobox .fas {
+  background-image: linear-gradient(to top, #B67d3c, #062b5f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.navbar__link {
+  float: right;
+}
+
+.navbar__searchbox {
+  text-align: center;
+  width: 25%;
+}
+
+.navbar__searchbox .fas {
+  color: #062b5f;
+}
+
+.navbar a {
+  color: #B67d3c;
+}
+
+.navbar a:link {
+  padding: .2rem 1.2rem;
+  text-decoration: none;
+  font-size: 1.6rem;
+  display: inline-block;
+}
+
+.navbar a:hover {
+  color: #d4a45d;
+}
 
 .current-book-list--item a {
   color: #B67d3c;
   font-size: 2.5rem;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .section-splash {
   height: 100vh;
@@ -110,17 +151,25 @@ body {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(../images/splash-background.jpg);
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; }
+  background-attachment: fixed;
+}
 
 .splash-heading {
   font-family: Garamond, serif;
-  color: #000; }
-  .splash-heading__container {
-    height: 100vh;
-    text-align: center; }
-  .splash-heading__box {
-    text-align: center;
-    padding: 10rem; }
-  .splash-heading--main {
-    font-size: 8rem;
-    text-shadow: 0rem 0.3rem 0.5rem rgba(255, 255, 255, 0.8); }
+  color: #000;
+}
+
+.splash-heading__container {
+  height: 100vh;
+  text-align: center;
+}
+
+.splash-heading__box {
+  text-align: center;
+  padding: 10rem;
+}
+
+.splash-heading--main {
+  font-size: 8rem;
+  text-shadow: 0rem 0.3rem 0.5rem rgba(255, 255, 255, 0.8);
+}
