@@ -53,13 +53,17 @@ module.exports = function (app) {
     app.get('/home', function (req, res, next) {
         res.render('pages/home');
     });
-    app.get('/home', function (req, res, next) {
-        res.render('pages/home');
+
+    app.get('/results', function (req, res, next) {
+        res.render('pages/search-results');
     });
 
+    app.get('/currentbook', function (req, res, next) {
+        res.render('pages/current-book');
+    });
 
-    // app.get('/profile', function (req, res, next) {
-    //     res.render('pages/profile');
-    // });
+    app.get('/test', function (req, res, next) {
+        res.render('pages/test');
+    });
 
 };

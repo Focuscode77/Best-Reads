@@ -3,6 +3,7 @@ var cookieSession = require("cookie-session");
 var passport = require("./config/passport");
 var PORT = process.env.PORT || 8080;
 
+
 var app = express();
 
 var db = require("./models");
@@ -11,6 +12,7 @@ app.use(express.static("public"));
 
 //handlebars - initialize handlebars and create routes
 var exphbs = require("express-handlebars");
+var Handlebars = require("handlebars");
 
 app.engine(
   "handlebars",

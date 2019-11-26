@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="container mt-5">
+
+<h2 class="section-heading--main">
+Search Results 
+{{!-- For <span id="user-query"></span> --}}
+</h2>
+
+<hr>
+
+<div id="search-results"></div>
+
+<script id="search-results-template" type="text/x-handlebars-template">
+<div class="row">
+\{{#each work}}
+<div class="col-lg-3 col-sm-6 d-inline">
+    <div class="card mb-3">
+        <img src=" \{{image}}" class="img-fluid card-img-top" style="max-height:25rem" alt="book">
+
+       
+    <div class="btn--add dropdown" id="{{id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
+    </div>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+      <a class="dropdown-item" id="current-reads">Current Reads</a>
+      <a class="dropdown-item"  id="past-reads">Past Reads</a>
+      <a class="dropdown-item"  id="future-reads">Future Reads</a>
+    </div>
+
+        {{!-- <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i> --}}
+            <div class="card-body">
+                <h5 class="card-title"> \{{title}}</h5>
+                <p class="card-text">By: \{{author}}</p>
+                <a href="#" class="btn btn-primary current-book-link" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" id="\{{id}}">Learn More</a>
+            </div>
+    </div>
+</div>
+\{{/each}}
+</row>
+</script>
+
+</div>
+</div>
+
+
+
+
+<script src="assets/js/search-results.js" type="text/javascript" ></script>

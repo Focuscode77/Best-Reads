@@ -4,3 +4,9 @@
     background-clip: text;
     color: transparent;
 }
+
+@mixin absolutePosition ($X, $Y) {
+    position: absolute;
+    top: $Y;
+    left: $X;
+}
