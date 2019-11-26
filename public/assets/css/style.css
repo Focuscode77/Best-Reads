@@ -1,3 +1,52 @@
+.hvr-grow {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  transition-duration: 0.3s;
+  transition-property: transform; }
+  .hvr-grow:hover {
+    transform: scale(1.1); }
+
+@-webkit-keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32, 152, 209, 0.75); } }
+
+@keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32, 152, 209, 0.75); } }
+
+.hvr-back-pulse {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  overflow: hidden;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color; }
+
+.hvr-back-pulse:hover,
+.hvr-back-pulse:focus,
+.hvr-back-pulse:active {
+  -webkit-animation-name: hvr-back-pulse;
+  animation-name: hvr-back-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-color: #2098D1;
+  background-color: #2098d1;
+  color: #B67d3c; }
+
 *,
 *::after,
 *::before {
@@ -27,39 +76,38 @@ body {
     font-weight: bold; }
 
 .row-height-250 {
-  height: 25rem;
+  max-height: 25rem;
   overflow: hidden; }
 
-.img-wrapper {
-  position: relative; }
+.card-title {
+  font-size: 1.6rem; }
 
-.img-responsive {
-  width: 100%;
-  height: auto; }
+.card-text {
+  font-size: 1.2rem; }
 
-.img-overlay {
+.dropdown-lists {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center; }
-
-.img-overlay:before {
-  content: ' ';
-  display: block;
-  /* adjust 'height' to position overlay content vertically */
-  height: 50%; }
+  top: 10%;
+  left: 70%; }
 
 .btn--add {
-  background-image: linear-gradient(to bottom left, #0861dd, #548cda);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
   position: absolute;
   top: 2%;
-  left: 80%;
-  text-shadow: 0.2rem 0.2rem 0.3rem rgba(8, 97, 221, 0.4); }
+  left: 80%; }
+  .btn--add-not-listed {
+    background-image: linear-gradient(to bottom left, #0861dd, #548cda);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0.2rem 0.2rem 0.3rem rgba(8, 97, 221, 0.4); }
+  .btn--add-listed {
+    background-image: linear-gradient(to bottom left, #B67d3c, #d4a45d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0.2rem 0.2rem 0.3rem rgba(182, 125, 60, 0.4); }
+  .btn--add:hover, .btn--add:focus, .btn--add:active {
+    cursor: pointer; }
 
 .navbar {
   overflow: hidden;
@@ -99,10 +147,24 @@ body {
     .navbar a:hover {
       color: #d4a45d; }
 
+#search-btn:hover, #search-btn:focus, #search-btn:active {
+  cursor: pointer; }
+
 .current-book-list--item a {
   color: #B67d3c;
   font-size: 2.5rem;
   font-weight: bold; }
+
+.user-profile--img {
+  border-radius: 50%; }
+
+.user-bio {
+  font-size: 1.8rem;
+  color: #020202; }
+
+.user-heading {
+  font-size: 2.4rem;
+  color: #020202; }
 
 .section-splash {
   height: 100vh;
