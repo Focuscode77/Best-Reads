@@ -1,7 +1,9 @@
 var db = require("../models");
+var path = require("csv-database");
 
 
 module.exports = function (app) {
+    const db = await csvdb("users.csv", ["id","name","mail"]);
 
 
     app.get("/api/posts", function (req, res) {
@@ -17,6 +19,21 @@ module.exports = function (app) {
             res.json(dbPost);
         });
     });
+
+    // add csv
+    app.get("/test",function(req,res){
+
+        await db.get();
+        [
+            {id: 1, name: "johndoe", mail: "john@github.com"},
+            {id: 2, name: "frankmass", mail: "frankmass@github.com"}
+        ]
+    });
+
+
+
+
+    
 
 
     app.get("/api/posts/:id", function (req, res) {
@@ -38,6 +55,14 @@ module.exports = function (app) {
         });
     });
 
+// Edit csv
+    app.post("/test2", function (req, res) {
+
+        await db.edit({name: "johndoe"}, {mail: "john@gitlab.com"});
+        [{1, "johndoe", "john@gitlab.com"}]
+        
+    });
+
     // DELETE route for deleting posts
     app.delete("/api/posts/:id", function (req, res) {
         db.Post.destroy({
@@ -49,6 +74,15 @@ module.exports = function (app) {
         });
     });
 
+
+    app.delete("/test3", function (req, res) {
+        await db.delete({id: 1});
+[ {id: 1, name: "johndoe", mail: "john@github.com"} ]
+
+    });
+
+
+
     // PUT route for updating posts
     app.put("/api/posts", function (req, res) {
         db.Post.update(
@@ -59,5 +93,11 @@ module.exports = function (app) {
             }).then(function (dbPost) {
             res.json(dbPost);
         });
+    });
+
+    // csv add
+    app.put("/test4", function (req, res) {
+        await db.add({id: 3, name: "stevejobs", mail: "jobs@github.com"});
+      [{id: 3, name: "stevejobs", mail: "jobs@github.com"}]
     });
 };
