@@ -4,7 +4,7 @@ var db = require("../models");
 module.exports = function (app) {
 
 
-    app.get("/api/posts", function (req, res) {
+    app.get("/api", function (req, res) {
         var query = {};
         if (req.query.author_id) {
             query.AuthorId = req.query.author_id;
@@ -17,9 +17,23 @@ module.exports = function (app) {
             res.json(dbPost);
         });
     });
+    app.get("/api/add/:book/:cat", function (req, res) {
+        if (req.session.passport) {
+            db.reads_lists.create({
+                user_id: profile.uid,
+                book_id: req.params.book,
+                cat_id: req.params.cat_id
+
+            }).then(() => {
+                res.json("something happened");
+            });
+        } else {
+            res.json("nothing happened")
+        }
+    });
 
 
-    app.get("/api/posts/:id", function (req, res) {
+    app.get("/api/add", function (req, res) {
 
         db.Post.findOne({
             where: {
@@ -32,9 +46,14 @@ module.exports = function (app) {
     });
 
     // POST route for saving a new post
-    app.post("/api/posts", function (req, res) {
-        db.Post.create(req.body).then(function (dbPost) {
-            res.json(dbPost);
+    app.post("/api/add/:book/:cat", function (req, res) {
+        db.reads_lists.create({
+            user_id: profile.uid,
+            book_id: req.params.book,
+            cat_id: req.params.cat_id
+
+        }).then(function (dbPost) {
+            res.json("something happened");
         });
     });
 
