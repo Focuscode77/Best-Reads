@@ -50,16 +50,20 @@ module.exports = function (app) {
         }
 
     });
-    app.get('/test', function (req, res, next) {
-        res.render('pages/test');
-    });
     app.get('/home', function (req, res, next) {
         res.render('pages/home');
     });
 
+    app.get('/results', function (req, res, next) {
+        res.render('pages/search-results');
+    });
 
-    // app.get('/profile', function (req, res, next) {
-    //     res.render('pages/profile');
-    // });
+    app.get('/currentbook', function (req, res, next) {
+        res.render('pages/current-book');
+    });
+
+    app.get('/test', function (req, res, next) {
+        res.render('pages/test');
+    });
 
 };
