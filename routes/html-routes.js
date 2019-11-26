@@ -25,6 +25,10 @@ module.exports = function (app) {
         res.render('pages/advanced-search');
     });
 
+    app.get('/mylists', function (req, res, next) {
+        res.render('pages/my-lists');
+    });
+
     // app.get('/mylists', function(req, res, next) {
     //     res.render('pages/my-lists');
     // });
