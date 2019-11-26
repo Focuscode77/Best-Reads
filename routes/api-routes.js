@@ -79,6 +79,19 @@ module.exports = function (app) {
 
       }
     }
+    app.get("/api/add/:book/:cat", function (req, res) {
+      if (req.session.passport) {
+        db.reads_lists.create({
+          user_id: profile.uid,
+          book_id: req.params.book,
+          cat_id: req.params.cat_id
+        }).then(() => {
+          res.json("something happened");
+        });
+      } else {
+        res.json("nothing happened")
+      }
+    });
 
 
   });
