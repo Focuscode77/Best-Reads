@@ -1,5 +1,6 @@
 @import "abstract/variables";
 @import "abstract/mixins";
+@import "base/animations";
 @import "base/base";
 @import "base/typography";
 @import "base/utilities";
@@ -11,4 +12,5 @@
 @import "pages/goals";
 @import "pages/home";
 @import "pages/lists";
+@import "pages/my-profile";
 @import "pages/splash";

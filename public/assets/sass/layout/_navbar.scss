@@ -49,3 +49,11 @@
     //     padding-top: 2rem;
     // }
 }
+
+#search-btn {
+    &:hover,
+    &:focus,
+    &:active {
+        cursor: pointer;
+    }
+}
