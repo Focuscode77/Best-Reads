@@ -29,9 +29,9 @@ module.exports = function (app) {
     //     res.render('pages/my-lists');
     // });
 
-    // app.get('/profile', function (req, res, next) {
-    //     res.render('pages/profile');
-    // });
+    app.get('/profile', function(req, res, next) {
+        res.render('pages/my-profile');
+    });
 
     app.get('/mylists', function (req, res, next) {
         let checker = false;

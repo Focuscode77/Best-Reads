@@ -6,7 +6,7 @@ module.exports = function (app) {
     const db = await csvdb("users.csv", ["id","name","mail"]);
 
 
-    app.get("/api/posts", function (req, res) {
+    app.get("/api", function (req, res) {
         var query = {};
         if (req.query.author_id) {
             query.AuthorId = req.query.author_id;
@@ -36,7 +36,7 @@ module.exports = function (app) {
     
 
 
-    app.get("/api/posts/:id", function (req, res) {
+    app.get("/api/add", function (req, res) {
 
         db.Post.findOne({
             where: {
@@ -49,9 +49,14 @@ module.exports = function (app) {
     });
 
     // POST route for saving a new post
-    app.post("/api/posts", function (req, res) {
-        db.Post.create(req.body).then(function (dbPost) {
-            res.json(dbPost);
+    app.post("/api/add/:book/:cat", function (req, res) {
+        db.reads_lists.create({
+            user_id: profile.uid,
+            book_id: req.params.book,
+            cat_id: req.params.cat_id
+
+        }).then(function (dbPost) {
+            res.json("something happened");
         });
     });
 
