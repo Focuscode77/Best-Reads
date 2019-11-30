@@ -158,28 +158,35 @@ module.exports = function (app) {
   })
 
 
-  app.get("/xmltest2", (req, res) => {
-    csvDb.get().then((data) => {
-      console.log(data);
-      res.json(data)
-    }, (err) => {
-      console.log(err);
-    });
+  app.get("/xmltest2/:result", (req, res) => {
+    var queryURL =
+      "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=" + req.params.result;
+
+    fetch(queryURL)
+      .then(response => response.text())
+      .then(data => {
+        var compactJson = xmlConvert.xml2js(data, {
+          compact: true,
+          spaces: 4
+        });
+        res.json(compactJson);
+      });
   });
 
   app.get("/xmltest", (req, res) => {
-    csvDb.insert({
-      id: '1',
-      book_id: '34345',
-      title: 'top Secret',
-      author: 'author',
-      isbn: '34343434343'
-    }).then((data) => {
-      console.log(data);
-      res.json(data)
-    }, (err) => {
-      console.log(err);
-    });
+    var queryURL =
+      "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=Madeline";
+
+    fetch(queryURL)
+      .then(response => response.text())
+      .then(data => {
+
+        var fullJson = xmlConvert.xml2js(data, {
+          compact: false,
+          spaces: 4
+        });
+        res.json(fullJson);
+      });
   });
 
   app.get(
@@ -216,4 +223,35 @@ module.exports = function (app) {
       // res.json(req.user.displayName)
     }
   );
+
+
+  // POST route for saving a new book
+  app.post("/api/add/:book/:cat_id", function (req, res) {
+    db.reads_lists.create({
+      user_id: profile.uid,
+      book_id: req.params.book,
+      cat_id: req.params.cat_id
+
+    }).then(function (dbPost) {
+      res.json("something happened");
+    });
+  });
+
+  app.get("/api/user/:id", function (req, res) {
+    // 2; Add a join to include all of the User's Lists here
+    db.readlists.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.Post]
+    }).then(function (dbAuthor) {
+      res.json(dbAuthor);
+    });
+  });
+
+
+
+
+
+
 };
