@@ -159,6 +159,9 @@ module.exports = function (app) {
 
 
   app.get("/xmltest2/:result", (req, res) => {
+    var books = {
+      work: []
+    };
     var queryURL =
       "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=" + req.params.result;
 
@@ -169,8 +172,29 @@ module.exports = function (app) {
           compact: true,
           spaces: 4
         });
-        res.json(compactJson);
-      });
+        for (var i = 0; i < 20; i++) {
+          var book = {
+            title: compactJson.GoodreadsResponse.search.results.work[i].best_book.title._text,
+            author: compactJson.GoodreadsResponse.search.results.work[i].best_book.author.name._text,
+            rating: compactJson.GoodreadsResponse.search.results.work[i].average_rating._text,
+            image: compactJson.GoodreadsResponse.search.results.work[i].best_book.image_url._text,
+            book_id: compactJson.GoodreadsResponse.search.results.work[i].best_book.id._text
+          };
+          db.books.findAll({
+            where: {
+              book_id: book.book_id
+            }
+          }).then((dbResult) => {
+            if (dbResult[0]) {
+              console.log("found not added!")
+            } else {
+              db.books.create(book)
+            }
+          })
+          books.work.push(book);
+        }
+        res.json(books);
+      })
   });
 
   app.get("/xmltest", (req, res) => {
