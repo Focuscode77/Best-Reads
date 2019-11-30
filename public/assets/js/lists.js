@@ -4,7 +4,7 @@ $(document).ready(function() {
     //the user will be taken to the list page with a custom url
     $(document).on("click", ".list", function() {
         var id = $(this).attr('list')
-        
+        location.replace("/currentlist");
     });
 
 });

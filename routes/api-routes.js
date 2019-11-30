@@ -155,9 +155,9 @@ module.exports = function (app) {
   })
 
 
-  app.get("/xmltest2", (req, res) => {
+  app.get("/xmltest2/:result", (req, res) => {
     var queryURL =
-      "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=Madeline";
+      "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=" + req.params.result;
 
     fetch(queryURL)
       .then(response => response.text())
@@ -220,4 +220,25 @@ module.exports = function (app) {
       // res.json(req.user.displayName)
     }
   );
+  // app.get("/view_list/:cat", (req, res) => {
+  //   if () {
+  //     res.render("pages/currentreads")
+  //   } else {
+  //     res.redirect("/")
+  //   }
+  // });
+  // app.get("/pastreads", (req, res) => {
+  //   if () {
+  //     res.render("pages/pastreads")
+  //   } else {
+  //     res.redirect("/")
+  //   }
+  // })
+  // app.get("/futurereads", (req, res) => {
+  //   if () {
+  //     res.render("pages/futurereads")
+  //   } else {
+  //     res.redirect("/")
+  //   }
+  // })
 };
