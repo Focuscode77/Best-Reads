@@ -109,6 +109,45 @@ body {
   .btn--add:hover, .btn--add:focus, .btn--add:active {
     cursor: pointer; }
 
+.btn--login {
+  position: relative;
+  display: inline-block; }
+  .btn--login .btn--login-google-focus {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99; }
+  .btn--login .btn--login-google-active {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99; }
+  .btn--login:hover .btn--login-google-focus {
+    display: inline; }
+  .btn--login:active .btn--login-google-active {
+    display: inline; }
+  .btn--login .btn--login-amazon-focus {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99; }
+  .btn--login .btn--login-amazon-active {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99; }
+  .btn--login:hover .btn--login-amazon-focus {
+    display: inline; }
+  .btn--login:active .btn--login-amazon-active {
+    display: inline; }
+
+.dropdown-item:hover, .dropdown-item:focus, .dropdown-item:active {
+  cursor: pointer; }
+
 .navbar {
   overflow: hidden;
   z-index: 100;
