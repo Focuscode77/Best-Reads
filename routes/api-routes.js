@@ -236,13 +236,15 @@ module.exports = function(app) {
         });
     });
 
-    //GET route to FindAll to find all the lists a book is on
-    app.get("/api/addedToLists/:book", function(req, res) {
-        db.reads_lists.findAll({
-            where: req.params.book,
-            include: [db.book_id]
-        }).then(function(lists) {
-            res.json(lists);
+    app.get("/api/user/:id", function(req, res) {
+        // 2; Add a join to include all of the User's Lists here
+        db.readlists.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [db.Post]
+        }).then(function(dbAuthor) {
+            res.json(dbAuthor);
         });
     });
 
