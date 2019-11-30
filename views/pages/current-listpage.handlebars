@@ -1,76 +1,37 @@
+<div class="container-fluid">
+    <div class="container mt-5">
+
+<h2 class="section-heading--main">
+Your List 
+{{!-- For <span id="user-query"></span> --}}
+</h2>
+
+<hr>
+
+<div id="all list"></div>
+
+<script id="all-list-template" type="text/x-handlebars-template">
 <div class="row">
-        <div class="col-lg-12">
-            <p class="text-center">Current List</p>
-        </div>
+\{{#each work}}
+<div class="col-lg-3 col-sm-6 d-inline">
+    <div class="card mb-3">
+        <img src=" \{{image}}" class="img-fluid card-img-top" style="max-height:25rem" alt="book">
+
+
+        {{!-- <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i> --}}
+            <div class="card-body">
+              
+            </div>
     </div>
+</div>
+\{{/each}}
+</row>
+</script>
 
-    <div class="container" id="currentlistcards">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="card" style="width: 15rem;">
-                    <img class="card-img-top" src="./images/movie1.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Book 1</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                            to
-                            additional
-                    </div>
-                </div>
-            </div>
+</div>
+</div>
 
-            <div class="col-lg-3">
-                <div class="card" style="width: 15rem;">
-                    <img class="card-img-top" src="./images/movie2.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Book 2</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                            content.
-                        </p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-3">
-                <div class="card" style="width: 15rem;">
-                    <img class="card-img-top" src="./images/movie3.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Book 3</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        </p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-3">
-                <div class="card" style="width: 15rem;">
-                    <img class="card-img-top" src="./images/movie4.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Book 3</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        </p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-3">
-                <div class="card" style="width: 15rem;">
-                    <img class="card-img-top" src="./images/movie5.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Book 5</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="card" style="width: 15rem;">
-                    <img class="card-img-top" src="./images/movie6.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Book 6</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<script src="assets/js/list-results.js" type="text/javascript" ></script>
