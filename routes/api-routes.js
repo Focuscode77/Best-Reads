@@ -236,4 +236,19 @@ module.exports = function(app) {
         });
     });
 
+    //GET route to FindAll to find all the lists a book is on
+    app.get("/api/addedToLists/:book", function(req, res) {
+        db.reads_lists.findAll({
+            where: req.params.book,
+            include: [db.book_id]
+        }).then(function(lists) {
+            res.json(lists);
+        });
+    });
+
+
+
+
+
+
 };
