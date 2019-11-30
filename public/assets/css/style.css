@@ -75,6 +75,7 @@ body {
   .info-heading b {
     font-weight: bold; }
 
+
 .lists-heading a {
   color: black; }
 
@@ -161,6 +162,7 @@ body {
 .container-fluid .card {
   border: 1px solid #ccc;
   box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3); }
+
 
 .user-profile--img {
   border-radius: 50%; }

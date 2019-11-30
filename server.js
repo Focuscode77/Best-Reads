@@ -46,7 +46,6 @@ app.use(passport.session());
 
 require("./routes/html-routes")(app);
 require("./routes/api-routes")(app);
-require("./routes/post-api-routes")(app);
 
 // Hi
 console.log("OMG!");
