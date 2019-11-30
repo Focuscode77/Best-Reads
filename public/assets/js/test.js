@@ -21,15 +21,20 @@ $(document).ready(function (req, res) {
             console.log(false);
         }
     });
+    var testBook = {
+        book_id: "66786",
+        title: "DataTypes.STRING",
+        author: "DataTypes",
+        isbn: "0000000",
+        cover: "<img src='https://mdbootstrap.com/img/logo/mdb192x192.jpg' />"
 
-    //     loginLink.detach();
-    //     logoutLink.appendTo(linksBody);
-
-
-    // })
-    // logoutLink.on("click", () => {
-    //     displayBody.text("Logged out!");
-    //     logoutLink.detach();
-    //     loginLink.appendTo(linksBody)
-    // })
+    }
+    $('[data-toggle="popover-hover"]').popover({
+        html: true,
+        trigger: 'hover',
+        placement: 'bottom',
+        content: function () {
+            return JSON.stringify(testBook);
+        }
+    });
 });

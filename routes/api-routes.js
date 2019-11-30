@@ -1,8 +1,11 @@
+const CsvDb = require('csv-db');
+const csvDb = new CsvDb('book_db.csv');
 var passport = require("../config/passport");
 var xmlConvert = require("xml-js");
 var db = require("../models");
 var fetch = require("node-fetch");
 var Puid = require("puid");
+var fs = require("fs")
 var puid = new Puid('');
 var profile = false;
 
@@ -156,34 +159,27 @@ module.exports = function (app) {
 
 
   app.get("/xmltest2", (req, res) => {
-    var queryURL =
-      "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=Madeline";
-
-    fetch(queryURL)
-      .then(response => response.text())
-      .then(data => {
-        var compactJson = xmlConvert.xml2js(data, {
-          compact: true,
-          spaces: 4
-        });
-        res.json(compactJson);
-      });
+    csvDb.get().then((data) => {
+      console.log(data);
+      res.json(data)
+    }, (err) => {
+      console.log(err);
+    });
   });
 
   app.get("/xmltest", (req, res) => {
-    var queryURL =
-      "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=Madeline";
-
-    fetch(queryURL)
-      .then(response => response.text())
-      .then(data => {
-
-        var fullJson = xmlConvert.xml2js(data, {
-          compact: false,
-          spaces: 4
-        });
-        res.json(fullJson);
-      });
+    csvDb.insert({
+      id: '1',
+      book_id: '34345',
+      title: 'top Secret',
+      author: 'author',
+      isbn: '34343434343'
+    }).then((data) => {
+      console.log(data);
+      res.json(data)
+    }, (err) => {
+      console.log(err);
+    });
   });
 
   app.get(

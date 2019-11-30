@@ -1,16 +1,13 @@
 module.exports = function (sequelize, DataTypes) {
 
-    var Book = sequelize.define("BestReads", {
-        Title: DataTypes.STRING,
-        Author: DataTypes.STRING,
-        Rating: DataTypes.INTEGER,
-        Cover: DataTypes.STRING,
-        List: DataTypes.STRING,
-
+    var Book = sequelize.define("book", {
+        book_id: DataTypes.INTEGER,
+        title: DataTypes.STRING,
+        author: DataTypes.STRING,
+        isbn: DataTypes.INTEGER,
+        cover: DataTypes.STRING
     });
 
     return Book;
-    
+
 };
-
-
