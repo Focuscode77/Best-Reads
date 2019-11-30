@@ -1,8 +1,11 @@
+const CsvDb = require('csv-db');
+const csvDb = new CsvDb('book_db.csv');
 var passport = require("../config/passport");
 var xmlConvert = require("xml-js");
 var db = require("../models");
 var fetch = require("node-fetch");
 var Puid = require("puid");
+var fs = require("fs")
 var puid = new Puid('');
 var profile = false;
 
@@ -155,9 +158,9 @@ module.exports = function (app) {
   })
 
 
-  app.get("/xmltest2", (req, res) => {
+  app.get("/xmltest2/:result", (req, res) => {
     var queryURL =
-      "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=Madeline";
+      "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=" + req.params.result;
 
     fetch(queryURL)
       .then(response => response.text())
@@ -220,4 +223,35 @@ module.exports = function (app) {
       // res.json(req.user.displayName)
     }
   );
+
+
+  // POST route for saving a new book
+  app.post("/api/add/:book/:cat_id", function (req, res) {
+    db.reads_lists.create({
+      user_id: profile.uid,
+      book_id: req.params.book,
+      cat_id: req.params.cat_id
+
+    }).then(function (dbPost) {
+      res.json("something happened");
+    });
+  });
+
+  app.get("/api/user/:id", function (req, res) {
+    // 2; Add a join to include all of the User's Lists here
+    db.readlists.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.Post]
+    }).then(function (dbAuthor) {
+      res.json(dbAuthor);
+    });
+  });
+
+
+
+
+
+
 };
