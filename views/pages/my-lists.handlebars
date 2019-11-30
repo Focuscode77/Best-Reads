@@ -1,165 +1,133 @@
 <section class="my-lists">
     <div class="container-fluid">
+
         <div class="container mt-5">
-
-            <h2 class="section-heading--main">
-                My Lists
-            </h2>
-            <hr>
-
-
-
-        </div>
-    </div>
-
-
-
-    <div class="container" id="cont1">
-
-        <div class='row-jawn'>
-            <h5 class="card-title">My Lists</h5>
             <div class="row">
-                <div class="d-flex">
-                    <a href="#" class="">Create List</a>
-                    <a href="#" class="">Rename List</a>
-                    <a href="#" class="">Delete List</a>
-                </div>
+                <h2 class="section-heading--main">
+                    My Lists
+                </h2>
+
             </div>
-        </div>
-
-
-
-
-
-        <!-- Row1 -->
-
-        <div class="row">
-            <h5 class="card-title">Current Reads</h5>
-        </div>
-
-        <div class="row">
-            <div class="slick-slider" id="s1">
-                <div class="col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
-                            class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Name</p>
-                        </div>
+            <hr>
+            <div class="row">
+                {{!-- LEFT COLUMN --}}
+                <div class="col-lg-3 w-25">
+                    <div class="row">
+                        <h1>My Lists</h1>
+                    </div>
+                    <div class="row">
+                        <ul>
+                            <h3>
+                                <li><a href="#">Create List</a></li>
+                            </h3>
+                            <h3>
+                                <li><a href="#">Delete List</a></li>
+                            </h3>
+                            <h3>
+                                <li><a href="#">Rename List</a></li>
+                            </h3>
+                        </ul>
                     </div>
                 </div>
-            </div>
+
+                {{!-- RIGHT COLUMN --}}
+
+                <div class="col-5-lg w-75">
+                    <div class="row">
+                        <h3 class="lists-heading"><a href="#">Current Reads</a></h3>
+                    </div>
 
 
-            <div class="slick-slider" id="s2">
-                <div class="col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
-                            class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Name</p>
+                    {{!-- Current Reads Images --}}
+                    <div class="row row-height-250 mb-5">
+                        <div class="col-lg-3 col-sm-6">
+                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
+                                class="img-fluid" alt="book">
+                            <i
+                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1482729135l/33580202._SX318_.jpg"
+                                class="img-fluid" alt="book">
+                            <i
+                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1473867911l/29780253.jpg"
+                                class="img-fluid" alt="book">
+                            <i
+                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1503615890l/31145186._SX318_.jpg"
+                                class="img-fluid" alt="book">
+                            <i
+                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="slick-slider" id="s3">
-                <div class="col-lg-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
-                            class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Name</p>
+                    {{!-- Past Reads Images --}}
+                    <div class="row">
+                        <h3 class="lists-heading"><a href="#">Past Reads</a></h3>
+                    </div>
+                    <div class="row row-height-250 mb-5">
+                        <div class="col-lg-3 col-sm-6">
+                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
+                                class="img-fluid" alt="book">
+                            <i
+                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1482729135l/33580202._SX318_.jpg"
+                                class="img-fluid" alt="book">
+                            <i
+                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1473867911l/29780253.jpg"
+                                class="img-fluid" alt="book">
+                            <i
+                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1503615890l/31145186._SX318_.jpg"
+                                class="img-fluid" alt="book">
+                            <i
+                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!-- Row 2 -->
-        <div class="row">
-            <h5 class="card-title">Future Reads</h5>
-        </div>
-        <div class="row">
-            <div class="slick-slider">
-                <div class="col-lg-4">
-                    <div class="card" id="s4" style="width: 18rem;">
-                        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
-                            class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Name</p>
-                        </div>
+                    {{!-- Future Reads Images --}}
+                    <div class="row">
+                        <h3 class="lists-heading"><a href="#">Future Reads</a></h3>
                     </div>
-                </div>
-            </div>
-
-            <div class="slick-slider">
-                <div class="col-lg-4">
-                    <div class="card" id="s5" style="width: 18rem;">
-                        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
-                            class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Name</p>
+                    <div class="row row-height-250 mb-5">
+                        <div class="col-lg-3 col-sm-6">
+                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
+                                class="img-fluid" alt="book">
+                            <i
+                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slick-slider">
-                <div class="col-lg-4">
-                    <div class="card" id="s6" style="width: 18rem;">
-                        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
-                            class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Name</p>
+                        <div class="col-lg-3 col-sm-6">
+                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1482729135l/33580202._SX318_.jpg"
+                                class="img-fluid" alt="book">
+                            <i
+                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Row 3 -->
-        <div class="row">
-            <h5 class="card-title">Past Reads</h5>
-        </div>
-        <div class="row">
-            <div class="slick-slider">
-                <div class="col-lg-4">
-                    <div class="card" id="s7" style="width: 18rem;">
-                        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
-                            class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Name</p>
+                        <div class="col-lg-3 col-sm-6">
+                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1473867911l/29780253.jpg"
+                                class="img-fluid" alt="book">
+                            <i
+                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slick-slider">
-                <div class="col-lg-4">
-                    <div class="card" id="s8" style="width: 18rem;">
-                        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
-                            class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Name</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slick-slider">
-                <div class="col-lg-4">
-                    <div class="card" id="s9" style="width: 18rem;">
-                        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
-                            class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Name</p>
+                        <div class="col-lg-3 col-sm-6">
+                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1503615890l/31145186._SX318_.jpg"
+                                class="img-fluid" alt="book">
+                            <i
+                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
