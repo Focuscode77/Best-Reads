@@ -9,9 +9,6 @@ $(document).ready(function() {
         id: GetParameterValues('id')
     };
 
-    console.log(currentBook.title);
-
-
     //BOOK INFORMATION IS DISPLAYED ON THE PAGE
     //this selects the script tag 
     var currentBookTemplate = $("#current-book-template").html();
@@ -33,8 +30,16 @@ $(document).ready(function() {
     };
 
 
-    // var currentBook = {
 
-    // }
+
+
+    /// Display the Lists the Book is On
+    function getListsAddedTo(book, listValue) {
+        $.post("/api/add/" + book + "/" + listValue, function(data) {
+            console.log(book + " has been added to " + listValue)
+        });
+    };
+
+
 
 });
