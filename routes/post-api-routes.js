@@ -21,7 +21,7 @@ module.exports = function(app) {
     // add csv
     app.get("/test", function(req, res) {
 
-        await db.get();
+        db.get();
         [
             { id: 1, name: "johndoe", mail: "john@github.com" },
             { id: 2, name: "frankmass", mail: "frankmass@github.com" }
@@ -45,7 +45,7 @@ module.exports = function(app) {
     // Edit csv
     app.post("/test2", function(req, res) {
 
-        await db.edit({ name: "johndoe" }, { mail: "john@gitlab.com" });
+        db.edit({ name: "johndoe" }, { mail: "john@gitlab.com" });
         [{ id: 1, name: "johndoe", mail: "john@gitlab.com" }]
 
     });
@@ -63,7 +63,7 @@ module.exports = function(app) {
 
 
     app.delete("/test3", function(req, res) {
-        await db.delete({ id: 1 });
+        db.delete({ id: 1 });
         [{ id: 1, name: "johndoe", mail: "john@github.com" }]
 
     });
@@ -84,7 +84,7 @@ module.exports = function(app) {
 
     // csv add
     app.put("/test4", function(req, res) {
-        await db.add({ id: 3, name: "stevejobs", mail: "jobs@github.com" });
+        db.add({ id: 3, name: "stevejobs", mail: "jobs@github.com" });
         [{ id: 3, name: "stevejobs", mail: "jobs@github.com" }]
     });
 };
