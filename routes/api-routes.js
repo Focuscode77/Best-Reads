@@ -79,6 +79,7 @@ module.exports = function (app) {
 
       }
     }
+    
     app.get("/api/add/:book/:cat", function (req, res) {
       if (req.session.passport) {
         db.reads_lists.create({
@@ -92,7 +93,7 @@ module.exports = function (app) {
         res.json("nothing happened")
       }
     });
-
+// ------------------------------------authentication code------------------------------------------
 
   });
   app.get("/create/google", (req, res) => {
