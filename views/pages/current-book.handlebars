@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="container mt-5">
 
-    <div id="current-book"></div>
+        <div id="current-book"></div>
 
-    <script id="current-book-template" type="text/x-handlebars-template">
+        <script id="current-book-template" type="text/x-handlebars-template">
     <h2 class="section-heading--main" id="current-book-title">
         \{{title}}
     </h2>
@@ -21,7 +21,7 @@
             </div>
 
             <div class="current-book-lists">
-                <h3 class="info-heading"><b>Your Lists</b></h3><i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-pulse hvr-back-pulse fa-4x"></i>
+                <h3 class="info-heading"><b>Your Lists</b></h3>
                 <ul id="current-book-list">
                     <li class="list-group-item current-book-list--item"><a href="#">Favorites</a></li>
                     <li class="list-group-item current-book-list--item"><a href="#">Read</a></li>
@@ -30,11 +30,20 @@
                 </ul>
             </div>
 
+             <div class="btn--add dropdown" id="{{id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
+    </div>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+      <a class="dropdown-item add-to-list" id="current-reads" value="1" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" data-id="\{{id}}">Current Reads</a>
+      <a class="dropdown-item add-to-list" id="past-reads" value="2" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" data-id="\{{id}}">Past Reads</a>
+      <a class="dropdown-item add-to-list" id="future-reads" value="3" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" data-id="\{{id}}">Future Reads</a>
+    </div>
+
         </div>
     </div>
     </script>
 
-</div>
+    </div>
 </div>
 
-<script src="assets/js/current-book.js" type="text/javascript" ></script>
+<script src="assets/js/current-book.js" type="text/javascript"></script>
