@@ -8,6 +8,9 @@
 
   <title>BestReads</title>
 
+  {{!-- Bookmark Icon --}}
+  <link rel="icon" href="assets/images/favicon.png" type="image/gif" sizes="16x16">
+
   {{!-- Bootstrap CSS --}}
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
 
@@ -36,12 +39,12 @@
 <body>
   {{> header }}
 
-  <a class="btn btn-primary" data-toggle="popover-hover"
-    data-img="https://mdbootstrap.com/img/logo/mdb192x192.jpg">Hover
-    me</a>
+
+
   {{!-- Main Content --}}
   {{{ body }}}
 
+  {{> footer }}
   {{!-- BestReads JS --}}
   <script src="assets/js/script.js" type="text/javascript"></script>
   <script src="assets/js/search.js" type="text/javascript"></script>
@@ -49,5 +52,7 @@
   <script src="assets/js/test.js" type="text/javascript"></script>
 
 </body>
+
+
 
 </html>

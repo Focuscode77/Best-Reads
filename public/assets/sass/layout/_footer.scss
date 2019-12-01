@@ -1,0 +1,25 @@
+  
+@mixin default-box {
+    $footerColor: #C27F22;
+    border: 1px solid $footerColor;
+    clear: both;
+    display: block;
+    margin: 5px 0;
+    padding: 5px 10px;
+    position: absolute;
+    bottom: 0;
+    width:100%;
+    
+    
+
+}
+
+footer{ @include default-box; }
+
+
+.footer-text{
+    
+text-align: center;
+
+}
+

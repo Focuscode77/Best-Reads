@@ -7,51 +7,61 @@
     Hey, <span id="username">Name</span>! Welcome to your next Best Read.
 </h2>
 <hr>
+
+<div id="recommendations-container"></div>
+
+<script id="recommendations-template" type="text/x-handlebars-template">
+\{{#each author}}
 <div class="section-heading--sub mt-5">
-    Recommendation: More Books By <span id="author">Author</span>
-</div>
-<div class="row row-height-250 mb-5">
-    <div class="col-lg-3 col-sm-6">
-        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg" class="img-fluid" alt="book">
-    <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1482729135l/33580202._SX318_.jpg" class="img-fluid" alt="book">
-        <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1473867911l/29780253.jpg" class="img-fluid" alt="book">
-        <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1503615890l/31145186._SX318_.jpg" class="img-fluid" alt="book">
-        <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
-    </div>
+    Recommendation: More Books By \{{name}}
 </div>
 
-<hr>
-<div class="section-heading--sub mt-5">
-    Recommendation: More Books By <span id="author">Author</span>
+<div class="row mb-5">
+    \{{#each work}}
+<div class="col-lg-3 col-sm-6 d-inline">
+    <div class="card mb-3">
+        <a href="#" class="current-book-link" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" id="\{{id}}">
+        <img src=" \{{image}}" class="img-fluid card-img-top" style="max-height:25rem" alt="book">
+        </a>
+
+    <div class="btn--add dropdown" id="{{id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
+    </div>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+      <a class="dropdown-item add-to-list" id="current-reads" value="1" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" data-id="\{{id}}">Current Reads</a>
+      <a class="dropdown-item add-to-list" id="past-reads" value="2" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" data-id="\{{id}}">Past Reads</a>
+      <a class="dropdown-item add-to-list" id="future-reads" value="3" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" data-id="\{{id}}">Future Reads</a>
+    </div>
+
+    </div>
 </div>
-<div class="row row-height-250 mb-5">
-    <div class="col-lg-3 col-sm-6">
-        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg" class="img-fluid" alt="book">
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1482729135l/33580202._SX318_.jpg" class="img-fluid" alt="book">
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1473867911l/29780253.jpg" class="img-fluid" alt="book">
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1503615890l/31145186._SX318_.jpg" class="img-fluid" alt="book">
-    </div>
+\{{/each}}
 </div>
+\{{/each}}
+</script>
+
+
 </section>
 
 
 </div>
 </div>
+<<<<<<< HEAD
+   
+=======
 
 
-<script src="assets/js/display-lists.js" type="text/javascript" ></script>
+<script src="assets/js/recommendations.js" type="text/javascript" ></script>
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> master
