@@ -57,14 +57,10 @@ $(document).ready(function() {
 
     //GENERATES THE SEARCH RESULTS INTO CARDS
     function displayRecommendations() {
-
-        console.log(bookRecs);
-
         //this selects the script tag 
         var recommendationsTemplate = $("#recommendations-template").html();
         //this compiles whatever object is passed through into the html
         var compiledRecommendations = Handlebars.compile(recommendationsTemplate);
-        console.log(compiledRecommendations(bookRecs));
         // //this passes the books object through - the each statement in the html will loop through the works
         $("#recommendations-container").html(compiledRecommendations(bookRecs));
 
