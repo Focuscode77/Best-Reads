@@ -2,7 +2,7 @@
     <div class="container mt-5">
 
 <h2 class="section-heading--main">
-Your List 
+Your Future Reads List 
 {{!-- For <span id="user-query"></span> --}}
 </h2>
 
@@ -19,8 +19,11 @@ Your List
 
 
         {{!-- <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i> --}}
-            <div class="card">
-              
+            <div class="card-body">
+                <h5 class="card-title"> \{{title}}</h5>
+                <p class="card-text">By: \{{author}}</p>
+                <a href="#" class="btn btn-primary current-book-link" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" id="\{{id}}">Learn More</a>
+
             </div>
     </div>
 </div>
@@ -34,4 +37,4 @@ Your List
 
 
 
-<script src="assets/js/list-results.js" type="text/javascript" ></script>
+<script src="/assets/js/futurereads.js" type="text/javascript" ></script>

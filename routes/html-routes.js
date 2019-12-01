@@ -25,7 +25,6 @@ module.exports = function(app) {
         res.render('pages/advanced-search');
     });
 
-
     app.get('/mylists', function(req, res, next) {
         res.render('pages/my-lists');
     });
@@ -66,5 +65,13 @@ module.exports = function(app) {
     app.get('/test', function(req, res, next) {
         res.render('pages/test');
     });
-
+    app.get('/mylist/current', function (req, res, next) {
+        res.render('pages/currentreads');
+    });
+    app.get('/mylist/past', function (req, res, next) {
+        res.render('pages/pastreads');
+    });
+    app.get('/mylist/future', function (req, res, next) {
+        res.render('pages/futurereads');
+    });
 };
