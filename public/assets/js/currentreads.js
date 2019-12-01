@@ -5,7 +5,7 @@ var books= {
 
 
 //get data from the xml/json api route - general "search all"
-$.get("/list/currentreads").then(function (data) {
+$.get("/api/mylist/current").then(function (data) {
     //each search result gets pushed to the 'works' array in the books object
     for (var i = 0; i < 20; i++) {
         var result = {
@@ -19,7 +19,6 @@ $.get("/list/currentreads").then(function (data) {
         //push each result to the 'work' array in the book object
         books.work.push(result);
     };
-}).then(function () {
     
 });
 

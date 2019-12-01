@@ -134,7 +134,6 @@ module.exports = function (app) {
   })
 
 
-
   app.get("/create/google", (req, res) => {
     db.google_uid.create({
       google_uid: req.session.passport.user._json.sub
@@ -289,27 +288,6 @@ module.exports = function (app) {
       // res.json(req.user.displayName)
     }
   );
-  // app.get("/view_list/:cat", (req, res) => {
-  //   if () {
-  //     res.render("pages/currentreads")
-  //   } else {
-  //     res.redirect("/")
-  //   }
-  // });
-  // app.get("/pastreads", (req, res) => {
-  //   if () {
-  //     res.render("pages/pastreads")
-  //   } else {
-  //     res.redirect("/")
-  //   }
-  // })
-  // app.get("/futurereads", (req, res) => {
-  //   if () {
-  //     res.render("pages/futurereads")
-  //   } else {
-  //     res.redirect("/")
-  //   }
-  // })
 
   app.get("/api/user/:id", function (req, res) {
     // 2; Add a join to include all of the User's Lists here
