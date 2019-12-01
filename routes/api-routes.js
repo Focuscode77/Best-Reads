@@ -1,5 +1,3 @@
-const CsvDb = require('csv-db');
-const csvDb = new CsvDb('book_db.csv');
 var passport = require("../config/passport");
 var xmlConvert = require("xml-js");
 var db = require("../models");
@@ -83,17 +81,17 @@ module.exports = function (app) {
       }
     }
   });
-  app.get("/api/add/:book/:cat", function (req, res) {
+  app.post("/api/add/:book/:cat", function (req, res) {
     if (req.session.passport) {
       db.reads_lists.create({
         user_id: profile.uid,
         book_id: req.params.book,
         cat: req.params.cat
       }).then(() => {
-        res.json("something happened");
+        res.status(200)
       });
     } else {
-      res.json("nothing happened")
+      res.status(405)
     }
   });
   app.get("/api/mylist/current", function (req, res) {
