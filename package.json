@@ -25,10 +25,14 @@
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "express-session": "^1.17.0",
+<<<<<<< HEAD
+=======
     "jsontocsv": "^0.3.0",
+>>>>>>> master
     "handlebars": "^4.5.3",
     "hover.css": "^2.3.2",
     "mysql2": "^2.0.0",
+    "node": "^13.1.0",
     "node-fetch": "^2.6.0",
     "passport": "^0.4.0",
     "passport-amazon": "^1.0.0",
