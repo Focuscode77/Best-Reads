@@ -51,7 +51,7 @@ require("./routes/api-routes")(app);
 console.log("OMG!");
 db.sequelize
   .sync({
-    force: true
+    force: false
   })
   .then(function () {
     app.listen(PORT, function () {
