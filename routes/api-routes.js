@@ -158,28 +158,11 @@ module.exports = function(app) {
 
             })
         })
-<<<<<<< HEAD
-      }
-      break;
-      default:
-        res.redirect("/logout")
-
-      }
-    }
-    
-    app.get("/api/add/:book/:cat", function (req, res) {
-      if (req.session.passport) {
-        db.reads_lists.create({
-          user_id: profile.uid,
-          book_id: req.params.book,
-          cat_id: req.params.cat_id
-=======
 
     });
     app.get("/create/amazon", (req, res) => {
         db.amazon_uid.create({
             amazon_uid: req.session.passport.user._json.user_id
->>>>>>> master
         }).then(() => {
             db.google_uid.create({
                 google_uid: ""
@@ -205,9 +188,6 @@ module.exports = function(app) {
             res.redirect("/")
         }
     });
-<<<<<<< HEAD
-// ------------------------------------authentication code------------------------------------------
-=======
     app.get("/user", (req, res) => {
         if (req.session.passport) {
             res.json(profile);
@@ -216,7 +196,6 @@ module.exports = function(app) {
         }
     })
 
->>>>>>> master
 
     app.get("/xmltest2/:result", (req, res) => {
         var books = {
