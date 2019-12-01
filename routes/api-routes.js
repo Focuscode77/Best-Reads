@@ -82,22 +82,59 @@ module.exports = function (app) {
 
       }
     }
-    app.get("/api/add/:book/:cat", function (req, res) {
-      if (req.session.passport) {
-        db.reads_lists.create({
-          user_id: profile.uid,
-          book_id: req.params.book,
-          cat_id: req.params.cat_id
-        }).then(() => {
-          res.json("something happened");
-        });
-      } else {
-        res.json("nothing happened")
-      }
-    });
-
-
   });
+  app.get("/api/add/:book/:cat", function (req, res) {
+    if (req.session.passport) {
+      db.reads_lists.create({
+        user_id: profile.uid,
+        book_id: req.params.book,
+        cat: req.params.cat
+      }).then(() => {
+        res.json("something happened");
+      });
+    } else {
+      res.json("nothing happened")
+    }
+  });
+  app.get("/api/mylist/current", function (req, res) {
+    if (req.session.passport) {
+      db.reads_lists.findAll({
+        where: {
+          user_id: profile.uid,
+          cat: 1
+        }
+      }).then(data => {
+        res.json(data)
+      })
+    }
+  })
+  app.get("/api/mylist/past", function (req, res) {
+    if (req.session.passport) {
+      db.reads_lists.findAll({
+        where: {
+          user_id: profile.uid,
+          cat: 2
+        }
+      }).then(data => {
+        res.json(data)
+      })
+    }
+  })
+  app.get("/api/mylist/future", function (req, res) {
+    if (req.session.passport) {
+      db.reads_lists.findAll({
+        where: {
+          user_id: profile.uid,
+          cat: 3
+        }
+      }).then(data => {
+        res.json(data)
+      })
+    }
+  })
+
+
+
   app.get("/create/google", (req, res) => {
     db.google_uid.create({
       google_uid: req.session.passport.user._json.sub
@@ -159,6 +196,9 @@ module.exports = function (app) {
 
 
   app.get("/xmltest2/:result", (req, res) => {
+    var books = {
+      work: []
+    };
     var queryURL =
       "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=" + req.params.result;
 
@@ -169,8 +209,34 @@ module.exports = function (app) {
           compact: true,
           spaces: 4
         });
-        res.json(compactJson);
-      });
+        for (var i = 0; i < 20; i++) {
+          var book = {
+            title: compactJson.GoodreadsResponse.search.results.work[i].best_book.title._text,
+            author: compactJson.GoodreadsResponse.search.results.work[i].best_book.author.name._text,
+            rating: compactJson.GoodreadsResponse.search.results.work[i].average_rating._text,
+            image: compactJson.GoodreadsResponse.search.results.work[i].best_book.image_url._text,
+            book_id: compactJson.GoodreadsResponse.search.results.work[i].best_book.id._text
+          };
+          db.books.findOrCreate({
+            where: {
+              book_id: book.book_id
+            },
+            defaults: {
+              title: compactJson.GoodreadsResponse.search.results.work[i].best_book.title._text,
+              author: compactJson.GoodreadsResponse.search.results.work[i].best_book.author.name._text,
+              rating: compactJson.GoodreadsResponse.search.results.work[i].average_rating._text,
+              image: compactJson.GoodreadsResponse.search.results.work[i].best_book.image_url._text
+            }
+          }).then(([book, created]) => {
+            console.log(book.get({
+              plain: true
+            }))
+            console.log(created)
+          })
+          books.work.push(book);
+        }
+        res.json(books);
+      })
   });
 
   app.get("/xmltest", (req, res) => {
@@ -244,19 +310,6 @@ module.exports = function (app) {
   //     res.redirect("/")
   //   }
   // })
-
-
-  // POST route for saving a new book
-  app.post("/api/add/:book/:cat_id", function (req, res) {
-    db.reads_lists.create({
-      user_id: profile.uid,
-      book_id: req.params.book,
-      cat_id: req.params.cat_id
-
-    }).then(function (dbPost) {
-      res.json("something happened");
-    });
-  });
 
   app.get("/api/user/:id", function (req, res) {
     // 2; Add a join to include all of the User's Lists here
