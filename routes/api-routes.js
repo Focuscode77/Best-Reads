@@ -19,73 +19,71 @@ function userProfile(uid, name, username, email, dob, pictureURL, provider, prov
     this.provider = provider;
     this.provider_id = provider_id;
 }
-module.exports = function(app) {
-    app.get("/logout", function(req, res) {
+module.exports = function (app) {
+    app.get("/logout", function (req, res) {
         req.logout();
         req.session = null;
         profile = false;
         res.redirect("/");
     });
-    app.get("/login", function(req, res) {
+    app.get("/login", function (req, res) {
         if (req.session.passport) {
             switch (req.session.passport.user.provider) {
-                case "google":
-                    {
-                        db.google_uid.findAll({
+                case "google": {
+                    db.google_uid.findAll({
+                        where: {
+                            google_uid: req.session.passport.user._json.sub
+                        }
+                    }).then(dbResult => {
+                        console.log(dbResult[0])
+                        if (dbResult[0]) {
+                            db.users.findAll({
+                                where: {
+                                    id: dbResult[0].id
+                                }
+                            }).then(dbResult => {
+
+                                profile = new userProfile(dbResult[0].id, dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
+                                console.log(req.session.passport.user._json && profile);
+                                res.redirect("/")
+                            })
+                        } else {
+                            res.redirect("/create/google")
+                        }
+                    })
+
+                }
+                break;
+            case "amazon": {
+                db.amazon_uid.findAll({
+                    where: {
+                        amazon_uid: req.session.passport.user._json.user_id
+                    }
+                }).then(dbResult => {
+                    console.log(dbResult[0])
+                    if (dbResult[0]) {
+                        db.users.findAll({
                             where: {
-                                google_uid: req.session.passport.user._json.sub
+                                id: dbResult[0].id
                             }
                         }).then(dbResult => {
-                            console.log(dbResult[0])
-                            if (dbResult[0]) {
-                                db.users.findAll({
-                                    where: {
-                                        id: dbResult[0].id
-                                    }
-                                }).then(dbResult => {
-
-                                    profile = new userProfile(dbResult[0].id, dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
-                                    console.log(req.session.passport.user._json && profile);
-                                    res.redirect("/")
-                                })
-                            } else {
-                                res.redirect("/create/google")
-                            }
+                            profile = new userProfile(dbResult[0].id, dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.user_id)
+                            console.log(req.session.passport.user._json && profile);
+                            res.redirect("/")
                         })
-
+                    } else {
+                        res.redirect("/create/amazon")
                     }
-                    break;
-                case "amazon":
-                    {
-                        db.amazon_uid.findAll({
-                            where: {
-                                amazon_uid: req.session.passport.user._json.user_id
-                            }
-                        }).then(dbResult => {
-                            console.log(dbResult[0])
-                            if (dbResult[0]) {
-                                db.users.findAll({
-                                    where: {
-                                        id: dbResult[0].id
-                                    }
-                                }).then(dbResult => {
-                                    profile = new userProfile(dbResult[0].id, dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.user_id)
-                                    console.log(req.session.passport.user._json && profile);
-                                    res.redirect("/")
-                                })
-                            } else {
-                                res.redirect("/create/amazon")
-                            }
-                        })
-                    }
-                    break;
-                default:
-                    res.redirect("/logout")
+                })
+            }
+            break;
+            default:
+                res.redirect("/logout")
 
             }
         }
     });
-    app.get("/api/add/:book/:cat", function(req, res) {
+    app.get("/api/add/:book/:cat", function (req, res) {
         if (req.session.passport) {
             db.reads_lists.create({
                 user_id: profile.uid,
@@ -98,7 +96,7 @@ module.exports = function(app) {
             res.json("nothing happened")
         }
     });
-    app.get("/api/mylist/current", function(req, res) {
+    app.get("/api/mylist/current", function (req, res) {
         if (req.session.passport) {
             db.reads_lists.findAll({
                 where: {
@@ -110,7 +108,7 @@ module.exports = function(app) {
             })
         }
     })
-    app.get("/api/mylist/past", function(req, res) {
+    app.get("/api/mylist/past", function (req, res) {
         if (req.session.passport) {
             db.reads_lists.findAll({
                 where: {
@@ -122,7 +120,7 @@ module.exports = function(app) {
             })
         }
     })
-    app.get("/api/mylist/future", function(req, res) {
+    app.get("/api/mylist/future", function (req, res) {
         if (req.session.passport) {
             db.reads_lists.findAll({
                 where: {
@@ -158,28 +156,11 @@ module.exports = function(app) {
 
             })
         })
-<<<<<<< HEAD
-      }
-      break;
-      default:
-        res.redirect("/logout")
-
-      }
-    }
-    
-    app.get("/api/add/:book/:cat", function (req, res) {
-      if (req.session.passport) {
-        db.reads_lists.create({
-          user_id: profile.uid,
-          book_id: req.params.book,
-          cat_id: req.params.cat_id
-=======
 
     });
     app.get("/create/amazon", (req, res) => {
         db.amazon_uid.create({
             amazon_uid: req.session.passport.user._json.user_id
->>>>>>> master
         }).then(() => {
             db.google_uid.create({
                 google_uid: ""
@@ -205,9 +186,6 @@ module.exports = function(app) {
             res.redirect("/")
         }
     });
-<<<<<<< HEAD
-// ------------------------------------authentication code------------------------------------------
-=======
     app.get("/user", (req, res) => {
         if (req.session.passport) {
             res.json(profile);
@@ -216,7 +194,6 @@ module.exports = function(app) {
         }
     })
 
->>>>>>> master
 
     app.get("/xmltest2/:result", (req, res) => {
         var books = {
@@ -290,7 +267,7 @@ module.exports = function(app) {
         passport.authenticate("amazon", {
             failureRedirect: "/"
         }),
-        function(req, res) {
+        function (req, res) {
             // Successful authentication, redirect home.
             res.redirect("/login");
         }
@@ -307,20 +284,20 @@ module.exports = function(app) {
         passport.authenticate("google", {
             failureRedirect: "/"
         }),
-        function(req, res) {
+        function (req, res) {
             res.redirect("/login");
             // res.json(req.user.displayName)
         }
     );
 
-    app.get("/api/user/:id", function(req, res) {
+    app.get("/api/user/:id", function (req, res) {
         // 2; Add a join to include all of the User's Lists here
         db.readlists.findOne({
             where: {
                 id: req.params.id
             },
             include: [db.Post]
-        }).then(function(dbAuthor) {
+        }).then(function (dbAuthor) {
             res.json(dbAuthor);
         });
     });
