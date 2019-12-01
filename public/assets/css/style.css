@@ -75,6 +75,9 @@ body {
   .info-heading b {
     font-weight: bold; }
 
+.lists-heading a {
+  color: black; }
+
 .row-height-250 {
   max-height: 25rem;
   overflow: hidden; }
@@ -193,6 +196,10 @@ body {
   color: #B67d3c;
   font-size: 2.5rem;
   font-weight: bold; }
+
+.container-fluid .card {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3); }
 
 .user-profile--img {
   border-radius: 50%; }

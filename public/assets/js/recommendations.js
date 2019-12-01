@@ -28,11 +28,11 @@ $(document).ready(function() {
                 //each search result gets pushed to the 'author' array in the books object
                 for (var i = 0; i < 4; i++) {
                     var result = {
-                        title: data.GoodreadsResponse.search.results.work[i].best_book.title._text,
-                        author: data.GoodreadsResponse.search.results.work[i].best_book.author.name._text,
-                        rating: data.GoodreadsResponse.search.results.work[i].average_rating._text,
-                        image: data.GoodreadsResponse.search.results.work[i].best_book.image_url._text,
-                        id: data.GoodreadsResponse.search.results.work[i].best_book.id._text
+                        title: data.work[i].title,
+                        author: data.work[i].author,
+                        rating: data.work[i].rating,
+                        image: data.work[i].image,
+                        book_id: data.work[i].book_id
                     };
 
                     workArr.push(result);
