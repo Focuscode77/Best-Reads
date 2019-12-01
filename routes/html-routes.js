@@ -69,13 +69,13 @@ module.exports = function (app) {
     app.get('/test', function (req, res, next) {
         res.render('pages/test');
     });
-    app.get('/list/currentreads', function (req, res, next) {
+    app.get('/mylist/current', function (req, res, next) {
         res.render('pages/currentreads');
     });
-    app.get('/list/pastreads', function (req, res, next) {
-        res.render('pages/currentreads');
+    app.get('/mylist/past', function (req, res, next) {
+        res.render('pages/pastreads');
     });
-    app.get('/list/futurereads', function (req, res, next) {
-        res.render('pages/currentreads');
+    app.get('/mylist/future', function (req, res, next) {
+        res.render('pages/futurereads');
     });
 };
