@@ -15,4 +15,42 @@
             cursor: pointer;
         }
     }
+    &--login {
+        position: relative;
+        display: inline-block;
+        // Google Login Button
+        & &-google-focus {
+            @include hideAbsoluteImg;
+        }
+        & &-google-active {
+            @include hideAbsoluteImg;
+        }
+        &:hover &-google-focus {
+            display: inline;
+        }
+        &:active &-google-active {
+            display: inline;
+        }
+        // Amazon Login Button
+        & &-amazon-focus {
+            @include hideAbsoluteImg;
+        }
+        & &-amazon-active {
+            @include hideAbsoluteImg;
+        }
+        &:hover &-amazon-focus {
+            display: inline;
+        }
+        &:active &-amazon-active {
+            display: inline;
+        }
+    }
+}
+
+.dropdown-item {
+    &:hover,
+    &:focus,
+    &:active {
+        cursor: pointer;
+    }
 }
