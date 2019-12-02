@@ -7,14 +7,21 @@ $(document).ready(function() {
     };
 
     getListResults("current");
-    // getListResults("past");
-    // getListResults("future");
+    getListResults("past");
+    getListResults("future");
 
     function getListResults(list) {
         //get data from the xml/json list api, based on list requested
         $.get("/api/mylist/" + list, function(data) {
+
+                if (data.work.length > 3) {
+                    var dataLength = 4;
+                } else {
+                    var dataLength = data.work.length;
+                }
+
                 //each search result gets pushed to the matching array in the lists object
-                for (var i = 0; i < 3; i++) {
+                for (var i = 0; i < dataLength; i++) {
                     var result = {
                         title: data.work[i].author,
                         author: data.work[i].title,
@@ -39,7 +46,6 @@ $(document).ready(function() {
             })
             .then(function(res) {
 
-                console.log(lists);
                 //GENERATES THE SEARCH RESULTS INTO CARDS
                 //this selects the script tag 
                 var listResultsTemplate = $("#" + list + "-reads-template").html();

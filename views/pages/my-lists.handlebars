@@ -49,11 +49,13 @@
                 <div class="col-5-lg w-75">
 
                     <div id="current-reads-container"></div>
+                    <div id="past-reads-container"></div>
+                    <div id="future-reads-container"></div>
 
                     {{!-- Current Reads Images --}}
                     <script id="current-reads-template" type="text/x-handlebars-template">
                     <div class="row">
-                        <h3 class="lists-heading"><a href="/mylist/current">Current Reads</a></h3>
+                        <h3 class="lists-heading"><a href="/mylist?list=current">Current Reads</a></h3>
                     </div>
 
                     <div class="row row-height-250 mb-5">
@@ -68,69 +70,42 @@
                     </script>
 
                     {{!-- Past Reads Images --}}
+                    <script id="past-reads-template" type="text/x-handlebars-template">
                     <div class="row">
-                        <h3 class="lists-heading"><a href="/mylist/past">Past Reads</a></h3>
+                        <h3 class="lists-heading"><a href="/mylist?list=past">Past Reads</a></h3>
                     </div>
+
                     <div class="row row-height-250 mb-5">
+                        \{{#each past}}
                         <div class="col-lg-3 col-sm-6">
-                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
-                                class="img-fluid" alt="book">
-                            <i
-                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
+                            <a href="#" class="current-book-link" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" id="\{{book_id}}">
+                            <img src="\{{image}}" class="img-fluid" alt="book">
+                            </a>
                         </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1482729135l/33580202._SX318_.jpg"
-                                class="img-fluid" alt="book">
-                            <i
-                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1473867911l/29780253.jpg"
-                                class="img-fluid" alt="book">
-                            <i
-                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1503615890l/31145186._SX318_.jpg"
-                                class="img-fluid" alt="book">
-                            <i
-                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
-                        </div>
+                        \{{/each}}
                     </div>
+                    </script>
+
                     {{!-- Future Reads Images --}}
+                    <script id="future-reads-template" type="text/x-handlebars-template">
                     <div class="row">
-                        <h3 class="lists-heading"><a href="/mylist/future">Future Reads</a></h3>
+                        <h3 class="lists-heading"><a href="/mylist?list=future">Future Reads</a></h3>
                     </div>
+
                     <div class="row row-height-250 mb-5">
+                        \{{#each future}}
                         <div class="col-lg-3 col-sm-6">
-                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1524380562l/39911748._SY475_.jpg"
-                                class="img-fluid" alt="book">
-                            <i
-                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
+                            <a href="#" class="current-book-link" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" id="\{{book_id}}">
+                            <img src="\{{image}}" class="img-fluid" alt="book">
+                            </a>
                         </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1482729135l/33580202._SX318_.jpg"
-                                class="img-fluid" alt="book">
-                            <i
-                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1473867911l/29780253.jpg"
-                                class="img-fluid" alt="book">
-                            <i
-                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1503615890l/31145186._SX318_.jpg"
-                                class="img-fluid" alt="book">
-                            <i
-                                class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
-                        </div>
+                        \{{/each}}
                     </div>
+                    </script>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<script src="/assets/js/add-btn.js" type="text/javascript"></script>
+<script src="/assets/js/display-lists.js" type="text/javascript" ></script>
