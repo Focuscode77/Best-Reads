@@ -5,7 +5,7 @@ module.exports = function (sequelize, DataTypes) {
         author: DataTypes.STRING,
         rating: DataTypes.STRING,
         image: DataTypes.STRING,
-        book_id: DataTypes.STRING,
+        book_id: DataTypes.INTEGER,
     });
 
 

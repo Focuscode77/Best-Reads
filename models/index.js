@@ -33,5 +33,12 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
+db.reads_lists.hasOne(db.books, {
+  foreignKey: 'book_id',
+  sourceKey: 'book_id'
+})
+db.books.belongsTo(db.reads_lists, {
+  foreignKey: 'book_id',
+  targetKey: 'book_id'
+})
 module.exports = db;

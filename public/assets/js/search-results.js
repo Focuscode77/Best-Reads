@@ -11,7 +11,7 @@ $(document).ready(function () {
         };
 
         //get data from the xml/json api route - general "search all"
-        $.get("/xmltest2/" + query, function (data) {
+        $.get("/search/" + query, function (data) {
             console.log(data)
             //each search result gets pushed to the 'works' array in the books object
             for (var i = 0; i < 20; i++) {
