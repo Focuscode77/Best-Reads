@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     //blank bookRecs object
     var bookRecs = {
@@ -20,7 +20,7 @@ $(document).ready(function() {
 
         //function containing api call to search authors and insert results into object
         function searchAuthors(author) {
-            $.get("/xmltest2/" + author, function(data) {
+            $.get("/search/" + author, function (data) {
 
                 //blank array of works to push results into
                 var workArr = [];
@@ -46,7 +46,7 @@ $(document).ready(function() {
                     work: workArr
                 };
                 bookRecs.author.push(authorObj);
-            }).then(function(res) {
+            }).then(function (res) {
                 if (num === 12) {
                     displayRecommendations();
                     num = 0;

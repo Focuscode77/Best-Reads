@@ -81,7 +81,7 @@ module.exports = function (app) {
       }
     }
   });
-  app.get("/api/add/:book/:cat", function (req, res) {
+  app.post("/api/add/:book/:cat", function (req, res) {
     if (req.session.passport) {
       db.reads_lists.create({
         user_id: profile.uid,
@@ -249,20 +249,6 @@ module.exports = function (app) {
         }
         res.json(books);
       })
-  });
-  app.get("/xmltest", (req, res) => {
-    var queryURL =
-      "https://www.goodreads.com/search/index.xml?key=ntj35uAln93Ca74x0mChdA&q=Madeline";
-    fetch(queryURL)
-      .then(response => response.text())
-      .then(data => {
-
-        var fullJson = xmlConvert.xml2js(data, {
-          compact: false,
-          spaces: 4
-        });
-        res.json(fullJson);
-      });
   });
   app.get(
     "/auth/amazon",
