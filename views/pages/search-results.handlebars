@@ -18,25 +18,24 @@ Search Results
         <img src=" \{{image}}" class="img-fluid card-img-top" style="max-height:25rem" alt="book">
 
        
-    <div class="btn--add dropdown" id="{{id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="btn--add dropdown" id="{{book_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i>
     </div>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-      <a class="dropdown-item add-to-list" id="current-reads" value="1" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" data-id="\{{id}}">Current Reads</a>
-      <a class="dropdown-item add-to-list" id="past-reads" value="2" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" data-id="\{{id}}">Past Reads</a>
-      <a class="dropdown-item add-to-list" id="future-reads" value="3" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" data-id="\{{id}}">Future Reads</a>
+      <a class="dropdown-item add-to-list" id="current-reads" value="1" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" data-id="\{{book_id}}">Current Reads</a>
+      <a class="dropdown-item add-to-list" id="past-reads" value="2" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" data-id="\{{book_id}}">Past Reads</a>
+      <a class="dropdown-item add-to-list" id="future-reads" value="3" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" data-id="\{{book_id}}">Future Reads</a>
     </div>
 
         {{!-- <i class="fas fa-plus-circle btn--add btn--add-not-listed hvr-grow hvr-back-pulse fa-4x"></i> --}}
             <div class="card-body">
                 <h5 class="card-title"> \{{title}}</h5>
                 <p class="card-text">By: \{{author}}</p>
-                <a href="#" class="btn btn-primary current-book-link" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" id="\{{id}}">Learn More</a>
+                <a href="#" class="btn btn-primary current-book-link" data-title="\{{title}}" data-author="\{{author}}" data-rating="\{{rating}}" data-img="\{{image}}" id="\{{book_id}}">Learn More</a>
             </div>
     </div>
 </div>
 \{{/each}}
-</div class="row">
 </script>
 
 </div>

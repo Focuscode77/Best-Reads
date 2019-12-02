@@ -1,5 +1,3 @@
-// const CsvDb = require('csv-db');
-// const csvDb = new CsvDb('book_db.csv');
 var passport = require("../config/passport");
 var xmlConvert = require("xml-js");
 var db = require("../models");
@@ -85,31 +83,56 @@ module.exports = function(app) {
             }
         }
     });
-    app.get("/api/add/:book/:cat", function(req, res) {
+    app.post("/api/add/:book/:cat", function(req, res) {
         if (req.session.passport) {
             db.reads_lists.create({
                 user_id: profile.uid,
                 book_id: req.params.book,
                 cat: req.params.cat
             }).then(() => {
-                res.json("something happened");
+                res.status("200");
             });
         } else {
-            res.json("nothing happened")
+            res.status("405")
         }
     });
     app.get("/api/mylist/current", function(req, res) {
-        if (req.session.passport) {
-            db.reads_lists.findAll({
-                where: {
-                    user_id: profile.uid,
-                    cat: 1
-                }
-            }).then(data => {
-                res.json(data)
-            })
-        }
-    })
+            // var book_ids = [];
+            var books = {
+                work: [{
+                    title: "Warcraft: Durotan",
+                    author: "Christie Golden",
+                    rating: "4.06",
+                    image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1455502998l/27038915._SY160_.jpg",
+                    book_id: "27038915"
+                }, {
+                    title: "WarCraft Archive (WarCraft, #1-3 & Of Blood and Honor)",
+                    author: "Richard A. Knaak",
+                    rating: "4.21",
+                    image: "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png",
+                    book_id: "1267905"
+                }, {
+                    title: "Wolfheart (World of WarCraft, #10)",
+                    author: "Richard A. Knaak",
+                    rating: "3.87",
+                    image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1311024802l/10818702._SX98_.jpg",
+                    book_id: "10818702"
+                }]
+            };
+            res.json(books)
+        })
+        // app.get("/api/mylist/current", function(req, res) {
+        //     if (req.session.passport) {
+        //         db.reads_lists.findAll({
+        //             where: {
+        //                 user_id: profile.uid,
+        //                 cat: 1
+        //             }
+        //         }).then(data => {
+        //             res.json(data)
+        //         })
+        //     }
+        // })
     app.get("/api/mylist/past", function(req, res) {
         if (req.session.passport) {
             db.reads_lists.findAll({
@@ -133,7 +156,7 @@ module.exports = function(app) {
                 res.json(data)
             })
         }
-    })
+    });
 
 
 
@@ -292,17 +315,18 @@ module.exports = function(app) {
         }
     );
 
-    app.get("/api/user/:id", function(req, res) {
-        // 2; Add a join to include all of the User's Lists here
-        db.readlists.findOne({
-            where: {
-                id: req.params.id
-            },
-            include: [db.Post]
-        }).then(function(dbAuthor) {
-            res.json(dbAuthor);
-        });
-    });
+
+    // app.get("/api/user/:id", function(req, res) {
+    //     // 2; Add a join to include all of the User's Lists here
+    //     db.readlists.findOne({
+    //         where: {
+    //             id: req.params.id
+    //         },
+    //         include: [db.Post]
+    //     }).then(function(dbAuthor) {
+    //         res.json(dbAuthor);
+    //     });
+    // });
 
 
 

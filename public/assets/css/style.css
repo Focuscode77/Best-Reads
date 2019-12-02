@@ -74,12 +74,9 @@ body {
   font-size: 3rem; }
   .info-heading b {
     font-weight: bold; }
-<<<<<<< HEAD
-=======
 
 .lists-heading a {
   color: black; }
->>>>>>> master
 
 .row-height-250 {
   max-height: 25rem;
@@ -115,20 +112,6 @@ body {
   .btn--add:hover, .btn--add:focus, .btn--add:active {
     cursor: pointer; }
 
-<<<<<<< HEAD
-footer {
-  border: 1px solid #C27F22;
-  clear: both;
-  display: block;
-  margin: 5px 0;
-  padding: 5px 10px;
-  position: absolute;
-  bottom: 0;
-  width: 100%; }
-
-.footer-text {
-  text-align: center; }
-=======
 .btn--login {
   position: relative;
   display: inline-block; }
@@ -167,7 +150,19 @@ footer {
 
 .dropdown-item:hover, .dropdown-item:focus, .dropdown-item:active {
   cursor: pointer; }
->>>>>>> master
+
+footer {
+  border: 1px solid #C27F22;
+  clear: both;
+  display: block;
+  margin: 5px 0;
+  padding: 5px 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
+
+.footer-text {
+  text-align: center; }
 
 .navbar {
   overflow: hidden;
@@ -214,13 +209,10 @@ footer {
   color: #B67d3c;
   font-size: 2.5rem;
   font-weight: bold; }
-<<<<<<< HEAD
-=======
 
 .container-fluid .card {
   border: 1px solid #ccc;
   box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3); }
->>>>>>> master
 
 .user-profile--img {
   border-radius: 50%; }

@@ -34,11 +34,11 @@ $(document).ready(function() {
 
 
     /// Display the Lists the Book is On
-    function getListsAddedTo(book, listValue) {
-        $.post("/api/add/" + book + "/" + listValue, function(data) {
-            console.log(book + " has been added to " + listValue)
-        });
-    };
+    // function getListsAddedTo(book, listValue) {
+    //     $.post("/api/add/" + book + "/" + listValue, function(data) {
+    //         console.log(book + " has been added to " + listValue)
+    //     });
+    // };
 
 
 
