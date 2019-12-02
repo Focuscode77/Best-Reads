@@ -65,6 +65,7 @@ module.exports = function(app) {
     app.get('/test', function(req, res, next) {
         res.render('pages/test');
     });
+<<<<<<< HEAD
     app.get('/mylist', function(req, res, next) {
         res.render('pages/current-list');
     });
@@ -76,5 +77,15 @@ module.exports = function(app) {
     });
     app.get('/mylist/future', function(req, res, next) {
         res.render('pages/current-list');
+=======
+    app.get('/mylist/current', function (req, res, next) {
+        res.render('pages/currentreads');
+    });
+    app.get('/mylist/past', function (req, res, next) {
+        res.render('pages/pastreads');
+    });
+    app.get('/mylist/future', function (req, res, next) {
+        res.render('pages/futurereads');
+>>>>>>> master
     });
 };
