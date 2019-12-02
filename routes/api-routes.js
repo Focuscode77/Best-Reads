@@ -17,96 +17,123 @@ function userProfile(uid, name, username, email, dob, pictureURL, provider, prov
     this.provider = provider;
     this.provider_id = provider_id;
 }
-module.exports = function (app) {
-    app.get("/logout", function (req, res) {
+module.exports = function(app) {
+    app.get("/logout", function(req, res) {
         req.logout();
         req.session = null;
         profile = false;
         res.redirect("/");
     });
-    app.get("/login", function (req, res) {
+    app.get("/login", function(req, res) {
         if (req.session.passport) {
             switch (req.session.passport.user.provider) {
-                case "google": {
-                    db.google_uid.findAll({
-                        where: {
-                            google_uid: req.session.passport.user._json.sub
-                        }
-                    }).then(dbResult => {
-                        console.log(dbResult[0])
-                        if (dbResult[0]) {
-                            db.users.findAll({
-                                where: {
-                                    id: dbResult[0].id
-                                }
-                            }).then(dbResult => {
-
-                                profile = new userProfile(dbResult[0].id, dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
-                                console.log(req.session.passport.user._json && profile);
-                                res.redirect("/")
-                            })
-                        } else {
-                            res.redirect("/create/google")
-                        }
-                    })
-
-                }
-                break;
-            case "amazon": {
-                db.amazon_uid.findAll({
-                    where: {
-                        amazon_uid: req.session.passport.user._json.user_id
-                    }
-                }).then(dbResult => {
-                    console.log(dbResult[0])
-                    if (dbResult[0]) {
-                        db.users.findAll({
+                case "google":
+                    {
+                        db.google_uid.findAll({
                             where: {
-                                id: dbResult[0].id
+                                google_uid: req.session.passport.user._json.sub
                             }
                         }).then(dbResult => {
-                            profile = new userProfile(dbResult[0].id, dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.user_id)
-                            console.log(req.session.passport.user._json && profile);
-                            res.redirect("/")
+                            console.log(dbResult[0])
+                            if (dbResult[0]) {
+                                db.users.findAll({
+                                    where: {
+                                        id: dbResult[0].id
+                                    }
+                                }).then(dbResult => {
+
+                                    profile = new userProfile(dbResult[0].id, dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.sub);
+                                    console.log(req.session.passport.user._json && profile);
+                                    res.redirect("/")
+                                })
+                            } else {
+                                res.redirect("/create/google")
+                            }
                         })
-                    } else {
-                        res.redirect("/create/amazon")
+
                     }
-                })
-            }
-            break;
-            default:
-                res.redirect("/logout")
+                    break;
+                case "amazon":
+                    {
+                        db.amazon_uid.findAll({
+                            where: {
+                                amazon_uid: req.session.passport.user._json.user_id
+                            }
+                        }).then(dbResult => {
+                            console.log(dbResult[0])
+                            if (dbResult[0]) {
+                                db.users.findAll({
+                                    where: {
+                                        id: dbResult[0].id
+                                    }
+                                }).then(dbResult => {
+                                    profile = new userProfile(dbResult[0].id, dbResult[0].name, dbResult[0].username, dbResult[0].email, dbResult[0].dob, dbResult[0].pictureURL, req.session.passport.user.provider, req.session.passport.user._json.user_id)
+                                    console.log(req.session.passport.user._json && profile);
+                                    res.redirect("/")
+                                })
+                            } else {
+                                res.redirect("/create/amazon")
+                            }
+                        })
+                    }
+                    break;
+                default:
+                    res.redirect("/logout")
 
             }
         }
     });
-    app.get("/api/add/:book/:cat", function (req, res) {
+    app.post("/api/add/:book/:cat", function(req, res) {
         if (req.session.passport) {
             db.reads_lists.create({
                 user_id: profile.uid,
                 book_id: req.params.book,
                 cat: req.params.cat
             }).then(() => {
-                res.json("something happened");
+                res.status("200");
             });
         } else {
-            res.json("nothing happened")
+            res.status("405")
         }
     });
-    app.get("/api/mylist/current", function (req, res) {
-        if (req.session.passport) {
-            db.reads_lists.findAll({
-                where: {
-                    user_id: profile.uid,
-                    cat: 1
-                }
-            }).then(data => {
-                res.json(data)
-            })
-        }
-    })
-    app.get("/api/mylist/past", function (req, res) {
+    app.get("/api/mylist/current", function(req, res) {
+            // var book_ids = [];
+            var books = {
+                work: [{
+                    title: "Warcraft: Durotan",
+                    author: "Christie Golden",
+                    rating: "4.06",
+                    image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1455502998l/27038915._SY160_.jpg",
+                    book_id: "27038915"
+                }, {
+                    title: "WarCraft Archive (WarCraft, #1-3 & Of Blood and Honor)",
+                    author: "Richard A. Knaak",
+                    rating: "4.21",
+                    image: "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png",
+                    book_id: "1267905"
+                }, {
+                    title: "Wolfheart (World of WarCraft, #10)",
+                    author: "Richard A. Knaak",
+                    rating: "3.87",
+                    image: "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1311024802l/10818702._SX98_.jpg",
+                    book_id: "10818702"
+                }]
+            };
+            res.json(books)
+        })
+        // app.get("/api/mylist/current", function(req, res) {
+        //     if (req.session.passport) {
+        //         db.reads_lists.findAll({
+        //             where: {
+        //                 user_id: profile.uid,
+        //                 cat: 1
+        //             }
+        //         }).then(data => {
+        //             res.json(data)
+        //         })
+        //     }
+        // })
+    app.get("/api/mylist/past", function(req, res) {
         if (req.session.passport) {
             db.reads_lists.findAll({
                 where: {
@@ -118,7 +145,7 @@ module.exports = function (app) {
             })
         }
     })
-    app.get("/api/mylist/future", function (req, res) {
+    app.get("/api/mylist/future", function(req, res) {
         if (req.session.passport) {
             db.reads_lists.findAll({
                 where: {
@@ -129,7 +156,7 @@ module.exports = function (app) {
                 res.json(data)
             })
         }
-    })
+    });
 
 
 
@@ -265,7 +292,7 @@ module.exports = function (app) {
         passport.authenticate("amazon", {
             failureRedirect: "/"
         }),
-        function (req, res) {
+        function(req, res) {
             // Successful authentication, redirect home.
             res.redirect("/login");
         }
@@ -282,23 +309,24 @@ module.exports = function (app) {
         passport.authenticate("google", {
             failureRedirect: "/"
         }),
-        function (req, res) {
+        function(req, res) {
             res.redirect("/login");
             // res.json(req.user.displayName)
         }
     );
 
-    app.get("/api/user/:id", function (req, res) {
-        // 2; Add a join to include all of the User's Lists here
-        db.readlists.findOne({
-            where: {
-                id: req.params.id
-            },
-            include: [db.Post]
-        }).then(function (dbAuthor) {
-            res.json(dbAuthor);
-        });
-    });
+
+    // app.get("/api/user/:id", function(req, res) {
+    //     // 2; Add a join to include all of the User's Lists here
+    //     db.readlists.findOne({
+    //         where: {
+    //             id: req.params.id
+    //         },
+    //         include: [db.Post]
+    //     }).then(function(dbAuthor) {
+    //         res.json(dbAuthor);
+    //     });
+    // });
 
 
 
