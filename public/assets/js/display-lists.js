@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     var lists = {
         current: [],
@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     function getListResults(list) {
         //get data from the xml/json list api, based on list requested
-        $.get("/api/mylist/" + list, function(data) {
+        $.get("/api/mylist/" + list, function (data) {
 
                 if (data.work.length > 3) {
                     var dataLength = 4;
@@ -44,7 +44,7 @@ $(document).ready(function() {
                     }
                 };
             })
-            .then(function(res) {
+            .then(function (res) {
 
                 //GENERATES THE SEARCH RESULTS INTO CARDS
                 //this selects the script tag 
@@ -60,31 +60,3 @@ $(document).ready(function() {
     }
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function getCurrentReads(user) {
-//     userId = profile.uid || "";
-//     if (userId) {
-//         userId = "/?author_id=" + userId;
-//     }
-//     $.get("/api/" + authorId, function(data) {
-//         console.log("Posts", data);
-//         posts = data;
-//         if (!posts || !posts.length) {
-//             displayEmpty(author);
-//         } else {
-//             initializeRows();
-//         }
-//     });
-// }

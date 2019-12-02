@@ -1,7 +1,4 @@
 require('dotenv').config();
-
-
-
 module.exports = {
     "development": {
         "username": process.env.DB_USERNAME,
@@ -21,6 +18,4 @@ module.exports = {
         "use_env_variable": "JAWSDB_URL",
         "dialect": "mysql"
     }
-
-
 };

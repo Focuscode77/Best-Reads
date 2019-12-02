@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     var thisList = decodeURI(GetParameterValues('list'));
 
@@ -10,7 +10,7 @@ $(document).ready(function() {
 
     function getListResults(list) {
         //get data from the xml/json list api, based on list requested
-        $.get("/api/mylist/" + list, function(data) {
+        $.get("/api/mylist/" + list, function (data) {
                 //each search result gets pushed to the matching array in the lists object
                 for (var i = 0; i < data.work.length; i++) {
                     var result = {
@@ -23,9 +23,8 @@ $(document).ready(function() {
 
                     currentList.book.push(result);
                 };
-                console.log(currentList);
             })
-            .then(function(res) {
+            .then(function (res) {
                 //GENERATES THE SEARCH RESULTS INTO CARDS
                 //this selects the script tag 
                 var listResultsTemplate = $("#current-list-template").html();
@@ -39,7 +38,6 @@ $(document).ready(function() {
             });
     }
 
-
     //this function grabs the query parameter from the url
     function GetParameterValues(param) {
         var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -50,6 +48,5 @@ $(document).ready(function() {
             };
         };
     };
-
 
 });

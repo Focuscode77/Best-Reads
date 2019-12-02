@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     //stores the information from the query URL in the object currentBook
     var currentBook = {
@@ -17,7 +17,6 @@ $(document).ready(function() {
     //the compiled template is displayed in the div
     $("#current-book").html(compiledCurrentBookTemplate(currentBook));
 
-
     //this function grabs the query parameter from the url
     function GetParameterValues(param) {
         var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -28,18 +27,4 @@ $(document).ready(function() {
             };
         };
     };
-
-
-
-
-
-    /// Display the Lists the Book is On
-    // function getListsAddedTo(book, listValue) {
-    //     $.post("/api/add/" + book + "/" + listValue, function(data) {
-    //         console.log(book + " has been added to " + listValue)
-    //     });
-    // };
-
-
-
 });
