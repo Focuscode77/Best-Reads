@@ -208,7 +208,7 @@ module.exports = function (app) {
       res.json(false)
     }
   })
-  app.get("/xmltest2/:result", (req, res) => {
+  app.get("/search/:result", (req, res) => {
     var books = {
       work: []
     };
