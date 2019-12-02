@@ -12,7 +12,6 @@ app.use(express.static("public"));
 
 //handlebars - initialize handlebars and create routes
 var exphbs = require("express-handlebars");
-var Handlebars = require("handlebars");
 
 app.engine(
   "handlebars",
@@ -47,8 +46,6 @@ app.use(passport.session());
 require("./routes/html-routes")(app);
 require("./routes/api-routes")(app);
 
-// Hi
-console.log("OMG!");
 db.sequelize
   .sync({
     force: false

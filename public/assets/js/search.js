@@ -1,8 +1,8 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
 
     //search goodreads api through search form and render results
-    $("#search-btn").on("click", function() {
+    $("#search-btn").on("click", function () {
         event.preventDefault();
 
         //clear previous session storage
@@ -18,9 +18,6 @@ $(document).ready(function() {
 
         //grab the search type from the dropdown
         var queryType = $("#query-type").val();
-
-        //console log what the user has searched for
-        console.log("you are searching for " + queryType + "\n with the name " + query);
 
         //save the query to session storage
         sessionStorage.setItem("query", query);

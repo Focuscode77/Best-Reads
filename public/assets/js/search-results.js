@@ -12,7 +12,6 @@ $(document).ready(function () {
 
         //get data from the xml/json api route - general "search all"
         $.get("/search/" + query, function (data) {
-            console.log(data)
             //each search result gets pushed to the 'works' array in the books object
             for (var i = 0; i < 20; i++) {
                 var result = {
@@ -40,21 +39,3 @@ $(document).ready(function () {
     getSearchResults();
 
 });
-
-
-
-
-
-
-
-
-// //rating
-// console.log(data.GoodreadsResponse.search.results.work[i].average_rating._text);
-// //title
-// console.log(data.GoodreadsResponse.search.results.work[i].best_book.title._text);
-// //author
-// console.log(data.GoodreadsResponse.search.results.work[i].best_book.author.name._text);
-// //image url
-// console.log(data.GoodreadsResponse.search.results.work[i].best_book.image_url._text);
-// //small image url
-// console.log(data.GoodreadsResponse.search.results.work[i].best_book.small_image_url._text);

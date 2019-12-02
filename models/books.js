@@ -7,8 +7,5 @@ module.exports = function (sequelize, DataTypes) {
         image: DataTypes.STRING,
         book_id: DataTypes.INTEGER,
     });
-
-
     return books;
-
 };
