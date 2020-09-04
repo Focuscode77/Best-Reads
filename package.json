@@ -39,6 +39,6 @@
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "node-sass": "^4.13.0"
+    "node-sass": "^4.13.1"
   }
 }
